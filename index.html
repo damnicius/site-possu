@@ -8,36 +8,125 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=Karla:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="site.css">
+<style>
+  /* Basic styling for the language selector */
+  .lang-selector {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    z-index: 100;
+  }
+  .lang-btn {
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.8rem;
+    color: #555;
+    transition: all 0.2s ease;
+  }
+  .lang-btn:hover {
+    background-color: #f0f0f0;
+  }
+  .lang-btn.active {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+  }
+  
+  /* Make sure header doesn't overlap on small screens */
+  @media (max-width: 600px) {
+    .lang-selector {
+      top: 0.5rem;
+      right: 0.5rem;
+    }
+    header {
+      padding-top: 2.5rem;
+    }
+  }
+
+  /* Ensure the grid items stretch to match the tallest one */
+  .svc {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+  
+  .card-link {
+    text-decoration: none !important; /* Force no underline */
+    color: inherit; /* Ensure text color inherits from parent */
+    display: block;
+    height: 100%; /* Make the link fill the grid cell */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Target all child elements to prevent text-decoration inheritance */
+  .card-link * {
+      text-decoration: none !important;
+  }
+
+  .card-link:hover, 
+  .card-link:focus {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-link .card {
+     transition: none; 
+     height: 100%; /* Make the card fill the link */
+     display: flex;
+     flex-direction: column;
+  }
+
+  /* Push the meta info to the bottom if the description is short */
+  .card-link .card .svc-meta {
+      margin-top: auto;
+  }
+</style>
 </head>
 <body>
+
+<div class="lang-selector">
+  <button class="lang-btn active" data-lang="pt">PT</button>
+  <button class="lang-btn" data-lang="en">EN</button>
+  <button class="lang-btn" data-lang="es">ES</button>
+  <button class="lang-btn" data-lang="fr">FR</button>
+</div>
+
 <header>
   <div class="wrap wrap--wide bar">
     <div class="brand">
       <img src="logo-possu.png" alt="" width="788" height="218">
-      <span>Massoterapia · por Ligia Possu</span>
+      <span data-i18n="brand_subtitle">Massoterapia · por Ligia Possu</span>
     </div>
     <a class="btn btn-sm" href="https://wa.me/5521967011479?text=Oi%20Ligia!%20Vi%20seu%20site%20e%20queria%20agendar%20uma%20massagem." rel="noopener">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      Agendar
+      <span data-i18n="nav_schedule">Agendar</span>
     </a>
   </div>
 </header>
+
 <section class="hero">
   <div class="wrap wrap--wide">
     <div class="hero-grid">
       <div class="hero-text">
-        <p class="eyebrow">MASSOTERAPIA A DOMICÍLIO&nbsp;· RIO DE JANEIRO</p>
-        <h1>Depois da massagem, você não precisa ir a lugar nenhum.</h1>
-        <p class="lede">Eu levo a maca, os óleos e as toalhas até a sua casa. Você escolhe o horário, deita e fica.</p>
+        <p class="eyebrow" data-i18n="hero_eyebrow">MASSOTERAPIA A DOMICÍLIO · RIO DE JANEIRO</p>
+        <h1 data-i18n="hero_title">Depois da massagem, você não precisa ir a lugar nenhum.</h1>
+        <p class="lede" data-i18n="hero_lede">Eu levo a maca, os óleos e as toalhas até a sua casa. Você escolhe o horário, deita e fica.</p>
         <div class="trust">
-          <span class="trust-item"><span class="stars" aria-hidden="true">★★★★★</span> 5,0 · 11 avaliações no Google</span>
-          <span class="trust-item">Copacabana, Barra, Tijuca, Recreio e Centro · Atendo das 9h às 20h</span>
+          <span class="trust-item"><span class="stars" aria-hidden="true">★★★★★</span> <span data-i18n="hero_trust_reviews">5,0 · 11 avaliações no Google</span></span>
+          <span class="trust-item" data-i18n="hero_trust_areas">Copacabana, Barra, Tijuca, Recreio e Centro · Atendo das 9h às 20h</span>
         </div>
         <a class="btn btn-block" href="https://wa.me/5521967011479?text=Oi%20Ligia!%20Vi%20seu%20site%20e%20queria%20agendar%20uma%20massagem." rel="noopener" style="margin-top:var(--s5)">
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          Agendar no WhatsApp
+          <span data-i18n="btn_whatsapp">Agendar no WhatsApp</span>
         </a>
-        <a class="link-arrow" href="https://wa.me/5521967011479?text=Oi%20Ligia!%20Tenho%20uma%20d%C3%BAvida%20antes%20de%20agendar." rel="noopener" style="margin-top:var(--s4)">Ainda com dúvidas? Pergunte antes de agendar&nbsp;→</a>
+        <a class="link-arrow" href="https://wa.me/5521967011479?text=Oi%20Ligia!%20Tenho%20uma%20d%C3%BAvida%20antes%20de%20agendar." rel="noopener" style="margin-top:var(--s4)" data-i18n="hero_questions">Ainda com dúvidas? Pergunte antes de agendar →</a>
       </div>
       <div class="figure hero-figure">
         <img src="g09.webp" alt="" width="382" height="510" fetchpriority="high">
@@ -45,9 +134,10 @@
     </div>
   </div>
 </section>
+
 <section class="story">
   <div class="wrap wrap--wide">
-    <p class="eyebrow">QUEM VAI ATÉ VOCÊ</p>
+    <p class="eyebrow" data-i18n="about_eyebrow">QUEM VAI ATÉ VOCÊ</p>
     <div class="who-grid">
       <div class="figure about-figure">
         <img src="g02.webp" alt="" width="371" height="510" loading="lazy">
@@ -55,128 +145,391 @@
       <div class="who-text">
       <h2>Ligia Possu</h2>
       <div class="chips">
-        <span class="chip">Formada em Fisiomassoterapia, 2024</span>
-        <span class="chip">Atendendo no Rio há quase 3 anos</span>
-        <span class="chip">Atendo em português, inglês e espanhol</span>
+        <span class="chip" data-i18n="about_chip_1">Formada em Fisiomassoterapia, 2024</span>
+        <span class="chip" data-i18n="about_chip_2">Atendendo no Rio há quase 3 anos</span>
+        <span class="chip" data-i18n="about_chip_3">Atendo em português, inglês e espanhol</span>
       </div>
-      <p>A massoterapia entrou na minha vida pela vontade de trabalhar diretamente com as pessoas. Acredito no poder da prevenção e promovo isso através de uma das medicinas mais antigas e relevantes do mundo, a medicina chinesa.</p>
-      <p>Poder proporcionar saúde e bem-estar de forma humana e natural me traz uma grande satisfação pessoal. Me especializei para oferecer alívio de dores musculares, redução do estresse e melhora da qualidade de vida.</p>
-      <p>Acredito no toque como ferramenta de cuidado e no atendimento como um espaço seguro de acolhimento.</p>
-      <p class="muted" style="margin-bottom:0">Levo <strong>lençóis e toalhas esterilizados</strong>, usados uma vez só. Se você já tem maca, me diga quando marcar.</p>
+      <p data-i18n="about_p1">A massoterapia entrou na minha vida pela vontade de trabalhar diretamente com as pessoas. Acredito no poder da prevenção e promovo isso através de uma das medicinas mais antigas e relevantes do mundo, a medicina chinesa.</p>
+      <p data-i18n="about_p2">Poder proporcionar saúde e bem-estar de forma humana e natural me traz uma grande satisfação pessoal. Me especializei para oferecer alívio de dores musculares, redução do estresse e melhora da qualidade de vida.</p>
+      <p data-i18n="about_p3">Acredito no toque como ferramenta de cuidado e no atendimento como um espaço seguro de acolhimento.</p>
+      <p class="muted" style="margin-bottom:0" data-i18n="about_p4">Levo <strong>lençóis e toalhas esterilizados</strong>, usados uma vez só. Se você já tem maca, me diga quando marcar.</p>
       </div>
     </div>
   </div>
 </section>
+
 <section class="sec-heavy">
   <div class="wrap wrap--wide">
-    <p class="eyebrow">O QUE EU FAÇO</p>
-    <h2>Escolha pelo que está doendo, não pelo nome técnico.</h2>
+    <p class="eyebrow" data-i18n="svc_eyebrow">O QUE EU FAÇO</p>
+    <h2 data-i18n="svc_title">Escolha pelo que está doendo, não pelo nome técnico.</h2>
     <div class="svc">
-      <div class="card">
-        <div class="svc-head">
-          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2v3M12 19v3M9 6h6M8 10h8M9 14h6M8 18h8"/></svg></span>
-          <div class="for">COSTAS E PESCOÇO TRAVADOS</div>
+      <a href="https://api.whatsapp.com/send/?phone=5521967011479&text=Oi+Ligia%21+Vi+seu+site+e+queria+agendar+uma+massagem.&type=phone_number&app_absent=0" class="card-link" rel="noopener">
+        <div class="card">
+          <div class="svc-head">
+            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2v3M12 19v3M9 6h6M8 10h8M9 14h6M8 18h8"/></svg></span>
+            <div class="for" data-i18n="svc1_for">COSTAS E PESCOÇO TRAVADOS</div>
+          </div>
+          <h3 data-i18n="svc1_name">Liberação neuromiofascial</h3>
+          <p data-i18n="svc1_desc">Trabalho ponto a ponto na fáscia para soltar a tensão que volta sempre no mesmo lugar.</p>
+          <div class="svc-meta">75 min · R$ 300</div>
         </div>
-        <h3>Liberação neuromiofascial</h3>
-        <p>Trabalho ponto a ponto na fáscia para soltar a tensão que volta sempre no mesmo lugar.</p>
-        <div class="svc-meta">75 min · R$ 300</div>
-      </div>
-      <div class="card">
-        <div class="svc-head">
-          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3c4 5 6 8.5 6 11.5a6 6 0 0 1-12 0C6 11.5 8 8 12 3Z"/></svg></span>
-          <div class="for">INCHAÇO, PERNAS PESADAS, PÓS-OPERATÓRIO</div>
+      </a>
+      
+      <a href="https://api.whatsapp.com/send/?phone=5521967011479&text=Oi+Ligia%21+Vi+seu+site+e+queria+agendar+uma+massagem.&type=phone_number&app_absent=0" class="card-link" rel="noopener">
+        <div class="card">
+          <div class="svc-head">
+            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3c4 5 6 8.5 6 11.5a6 6 0 0 1-12 0C6 11.5 8 8 12 3Z"/></svg></span>
+            <div class="for" data-i18n="svc2_for">INCHAÇO, PERNAS PESADAS, PÓS-OPERATÓRIO</div>
+          </div>
+          <h3 data-i18n="svc2_name">Drenagem linfática</h3>
+          <p data-i18n="svc2_desc">Movimentos lentos que ajudam o corpo a tirar o líquido que ficou parado.</p>
+          <div class="svc-meta">60 min · R$ 250</div>
         </div>
-        <h3>Drenagem linfática</h3>
-        <p>Movimentos lentos que ajudam o corpo a tirar o líquido que ficou parado.</p>
-        <div class="svc-meta">60 min · R$ 250</div>
-      </div>
-      <div class="card">
-        <div class="svc-head">
-          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/></svg></span>
-          <div class="for">CONTORNO E FIRMEZA DA PELE</div>
+      </a>
+      
+      <a href="https://api.whatsapp.com/send/?phone=5521967011479&text=Oi+Ligia%21+Vi+seu+site+e+queria+agendar+uma+massagem.&type=phone_number&app_absent=0" class="card-link" rel="noopener">
+        <div class="card">
+          <div class="svc-head">
+            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/></svg></span>
+            <div class="for" data-i18n="svc3_for">CONTORNO E FIRMEZA DA PELE</div>
+          </div>
+          <h3 data-i18n="svc3_name">Massagem modeladora</h3>
+          <p data-i18n="svc3_desc">Pressão firme e ritmada. Funciona em sequência de sessões, não em uma só.</p>
+          <div class="svc-meta">45 min · R$ 280</div>
         </div>
-        <h3>Massagem modeladora</h3>
-        <p>Pressão firme e ritmada. Funciona em sequência de sessões, não em uma só.</p>
-        <div class="svc-meta">45 min · R$ 280</div>
-      </div>
-      <div class="card">
-        <div class="svc-head">
-          <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3a9 9 0 1 0 6 15.9A9 9 0 0 1 15 3Z"/></svg></span>
-          <div class="for">CABEÇA CHEIA, SONO RUIM</div>
+      </a>
+      
+      <a href="https://api.whatsapp.com/send/?phone=5521967011479&text=Oi+Ligia%21+Vi+seu+site+e+queria+agendar+uma+massagem.&type=phone_number&app_absent=0" class="card-link" rel="noopener">
+        <div class="card">
+          <div class="svc-head">
+            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3a9 9 0 1 0 6 15.9A9 9 0 0 1 15 3Z"/></svg></span>
+            <div class="for" data-i18n="svc4_for">CABEÇA CHEIA, SONO RUIM</div>
+          </div>
+          <h3 data-i18n="svc4_name">Massagem relaxante</h3>
+          <p data-i18n="svc4_desc">Ritmo constante e silêncio. É a sessão para quem só precisa desligar.</p>
+          <div class="svc-meta">60 min · R$ 280</div>
         </div>
-        <h3>Massagem relaxante</h3>
-        <p>Ritmo constante e silêncio. É a sessão para quem só precisa desligar.</p>
-        <div class="svc-meta">60 min · R$ 280</div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
+
 <span id="avaliacoes"></span>
 <section class="story sec-heavy">
   <div class="wrap wrap--wide">
-    <p class="eyebrow">O QUE DIZEM</p>
-    <h2>Onze pessoas deixaram alguém desconhecido entrar em casa. Nenhuma nota abaixo de cinco.</h2>
+    <p class="eyebrow" data-i18n="reviews_eyebrow">O QUE DIZEM</p>
+    <h2 data-i18n="reviews_title">Onze pessoas deixaram alguém desconhecido entrar em casa. Nenhuma nota abaixo de cinco.</h2>
     <div class="rating">
       <div class="n">5,0</div>
       <div>
         <div class="stars" aria-hidden="true">★★★★★</div>
-        <div class="txt-sm">11 avaliações no Google</div>
+        <div class="txt-sm" data-i18n="reviews_count">11 avaliações no Google</div>
       </div>
     </div>
     <div class="quotes">
       <div class="quote">
         <div class="stars" aria-hidden="true">★★★★★</div>
-        <p>“Estava com algumas dores por conta da academia e saí da massagem como novo, eu esqueci minhas dores e super relaxado. Vale muito a pena, a Ligia tem uma técnica incrível.”</p>
+        <p data-i18n="quote_1">“Estava com algumas dores por conta da academia e saí da massagem como novo, eu esqueci minhas dores e super relaxado. Vale muito a pena, a Ligia tem uma técnica incrível.”</p>
         <div class="who"><span class="avatar" aria-hidden="true">I</span>Ignacio Reyes · Google</div>
       </div>
       <div class="quote">
         <div class="stars" aria-hidden="true">★★★★★</div>
-        <p lang="en">“Ligia applies the perfect amount of pressure by periodically checking with me on my comfort level. She has relieved the pain and increased the range of motion in my shoulder.”</p>
+        <p data-i18n="quote_2">“Ligia applies the perfect amount of pressure by periodically checking with me on my comfort level. She has relieved the pain and increased the range of motion in my shoulder.”</p>
         <div class="who"><span class="avatar" aria-hidden="true">J</span>John Rasp · Google</div>
       </div>
       <div class="quote">
         <div class="stars" aria-hidden="true">★★★★★</div>
-        <p>“Extremamente atenciosa e profissional, já a tenho recomendado a todos os meus amigos.”</p>
+        <p data-i18n="quote_3">“Extremamente atenciosa e profissional, já a tenho recomendado a todos os meus amigos.”</p>
         <div class="who"><span class="avatar" aria-hidden="true">T</span>Thiago Mácimo · Google</div>
       </div>
     </div>
-  </div>
-</section>
-<span id="perguntas"></span>
-<section class="final">
-  <div class="wrap wrap--wide">
-    <h2>Me diga o bairro e o dia. Eu levo o resto.</h2>
-    <p class="lede">Resposta no mesmo dia. Sem cadastro e sem aplicativo.</p>
-    <div class="trust">
-      <span class="trust-item"><span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4V5Z"/></svg></span>Direto comigo, sem intermediário</span>
-      <span class="trust-item"><span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span>Copacabana, Barra, Tijuca, Recreio e Centro · das 9h às 20h</span>
-    </div>
-    <a class="btn btn-block" href="https://wa.me/5521967011479?text=Oi%20Ligia!%20Vi%20seu%20site%20e%20queria%20agendar%20uma%20massagem." rel="noopener" style="margin-top:var(--s5)">
-      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      Agendar no WhatsApp
+    
+    <a class="btn btn-block" href="https://maps.app.goo.gl/ibxgKm8obhqSBdGu5" rel="noopener" target="_blank" style="margin-top:var(--s5)">
+      <span data-i18n="btn_more_reviews">Ver mais avaliações no Google</span>
     </a>
   </div>
 </section>
+
+<span id="perguntas"></span>
+<section class="final">
+  <div class="wrap wrap--wide">
+    <h2 data-i18n="final_title">Me diga o bairro e o dia. Eu levo o resto.</h2>
+    <p class="lede" data-i18n="final_lede">Resposta no mesmo dia. Sem cadastro e sem aplicativo.</p>
+    <div class="trust">
+      <span class="trust-item"><span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4V5Z"/></svg></span><span data-i18n="final_trust_1">Direto comigo, sem intermediário</span></span>
+      <span class="trust-item"><span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span><span data-i18n="final_trust_2">Copacabana, Barra, Tijuca, Recreio e Centro · das 9h às 20h</span></span>
+    </div>
+    <a class="btn btn-block" href="https://wa.me/5521967011479?text=Oi%20Ligia!%20Vi%20seu%20site%20e%20queria%20agendar%20uma%20massagem." rel="noopener" style="margin-top:var(--s5)">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span data-i18n="btn_whatsapp">Agendar no WhatsApp</span>
+    </a>
+  </div>
+</section>
+
 <footer>
   <div class="wrap wrap--wide">
     <div class="footgrid">
       <div class="footcol">
-        <div class="foothead">Falar comigo</div>
+        <div class="foothead" data-i18n="footer_contact">Falar comigo</div>
         <div class="footlinks">
         <a href="https://wa.me/5521967011479?text=Oi%20Ligia!%20Vi%20seu%20site%20e%20queria%20agendar%20uma%20massagem." rel="noopener">WhatsApp (21) 96701-1479</a>
-        <a href="tel:+5521967011479">Ligar</a>
+        <a href="tel:+5521967011479" data-i18n="footer_call">Ligar</a>
         <a href="https://www.instagram.com/ligiapossu/" rel="noopener">Instagram @ligiapossu</a>
         </div>
       </div>
     </div>
-    <div class="footnote">Ligia Possu · Massoterapeuta a domicílio · Rio de Janeiro · Atendo das 9h às 20h</div>
+    <div class="footnote" data-i18n="footer_note">Ligia Possu · Massoterapeuta a domicílio · Rio de Janeiro · Atendo das 9h às 20h</div>
   </div>
 </footer>
+
 <div class="dock">
   <a class="btn btn-block" href="https://wa.me/5521967011479?text=Oi%20Ligia!%20Vi%20seu%20site%20e%20queria%20agendar%20uma%20massagem." rel="noopener">
     <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    Agendar no WhatsApp
+    <span data-i18n="btn_whatsapp">Agendar no WhatsApp</span>
   </a>
 </div>
+
+<script>
+  // Dictionary containing translations for PT, EN, and ES
+  const translations = {
+    pt: {
+      brand_subtitle: "Massoterapia · por Ligia Possu",
+      nav_schedule: "Agendar",
+      hero_eyebrow: "MASSOTERAPIA A DOMICÍLIO · RIO DE JANEIRO",
+      hero_title: "Depois da massagem, você não precisa ir a lugar nenhum.",
+      hero_lede: "Eu levo a maca, os óleos e as toalhas até a sua casa. Você escolhe o horário, deita e fica.",
+      hero_trust_reviews: "5,0 · 11 avaliações no Google",
+      hero_trust_areas: "Copacabana, Barra, Tijuca, Recreio e Centro · Atendo das 9h às 20h",
+      btn_whatsapp: "Agendar no WhatsApp",
+      hero_questions: "Ainda com dúvidas? Pergunte antes de agendar →",
+      about_eyebrow: "QUEM VAI ATÉ VOCÊ",
+      about_chip_1: "Formada em Fisiomassoterapia, 2024",
+      about_chip_2: "Atendendo no Rio há quase 3 anos",
+      about_chip_3: "Atendo em português, inglês e espanhol",
+      about_p1: "A massoterapia entrou na minha vida pela vontade de trabalhar diretamente com as pessoas. Acredito no poder da prevenção e promovo isso através de uma das medicinas mais antigas e relevantes do mundo, a medicina chinesa.",
+      about_p2: "Poder proporcionar saúde e bem-estar de forma humana e natural me traz uma grande satisfação pessoal. Me especializei para oferecer alívio de dores musculares, redução do estresse e melhora da qualidade de vida.",
+      about_p3: "Acredito no toque como ferramenta de cuidado e no atendimento como um espaço seguro de acolhimento.",
+      about_p4: "Levo <strong>lençóis e toalhas esterilizados</strong>, usados uma vez só. Se você já tem maca, me diga quando marcar.",
+      svc_eyebrow: "O QUE EU FAÇO",
+      svc_title: "Escolha pelo que está doendo, não pelo nome técnico.",
+      svc1_for: "COSTAS E PESCOÇO TRAVADOS",
+      svc1_name: "Liberação neuromiofascial",
+      svc1_desc: "Trabalho ponto a ponto na fáscia para soltar a tensão que volta sempre no mesmo lugar.",
+      svc2_for: "INCHAÇO, PERNAS PESADAS, PÓS-OPERATÓRIO",
+      svc2_name: "Drenagem linfática",
+      svc2_desc: "Movimentos lentos que ajudam o corpo a tirar o líquido que ficou parado.",
+      svc3_for: "CONTORNO E FIRMEZA DA PELE",
+      svc3_name: "Massagem modeladora",
+      svc3_desc: "Pressão firme e ritmada. Funciona em sequência de sessões, não em uma só.",
+      svc4_for: "CABEÇA CHEIA, SONO RUIM",
+      svc4_name: "Massagem relaxante",
+      svc4_desc: "Ritmo constante e silêncio. É a sessão para quem só precisa desligar.",
+      reviews_eyebrow: "O QUE DIZEM",
+      reviews_title: "Onze pessoas deixaram alguém desconhecido entrar em casa. Nenhuma nota abaixo de cinco.",
+      reviews_count: "11 avaliações no Google",
+      quote_1: "“Estava com algumas dores por conta da academia e saí da massagem como novo, eu esqueci minhas dores e super relaxado. Vale muito a pena, a Ligia tem uma técnica incrível.”",
+      quote_2: "“Ligia applies the perfect amount of pressure by periodically checking with me on my comfort level. She has relieved the pain and increased the range of motion in my shoulder.”",
+      quote_3: "“Extremamente atenciosa e profissional, já a tenho recomendado a todos os meus amigos.”",
+      btn_more_reviews: "Ver mais avaliações no Google",
+      final_title: "Me diga o bairro e o dia. Eu levo o resto.",
+      final_lede: "Resposta no mesmo dia. Sem cadastro e sem aplicativo.",
+      final_trust_1: "Direto comigo, sem intermediário",
+      final_trust_2: "Copacabana, Barra, Tijuca, Recreio e Centro · das 9h às 20h",
+      footer_contact: "Falar comigo",
+      footer_call: "Ligar",
+      footer_note: "Ligia Possu · Massoterapeuta a domicílio · Rio de Janeiro · Atendo das 9h às 20h"
+    },
+    en: {
+      brand_subtitle: "Massage Therapy · by Ligia Possu",
+      nav_schedule: "Book",
+      hero_eyebrow: "AT-HOME MASSAGE THERAPY · RIO DE JANEIRO",
+      hero_title: "After the massage, you don't need to go anywhere.",
+      hero_lede: "I bring the table, oils, and towels to your home. You choose the time, lie down, and stay.",
+      hero_trust_reviews: "5.0 · 11 reviews on Google",
+      hero_trust_areas: "Copacabana, Barra, Tijuca, Recreio, and Centro · Available 9am to 8pm",
+      btn_whatsapp: "Book on WhatsApp",
+      hero_questions: "Still have questions? Ask before booking →",
+      about_eyebrow: "WHO COMES TO YOU",
+      about_chip_1: "Graduated in Physiomassotherapy, 2024",
+      about_chip_2: "Working in Rio for almost 3 years",
+      about_chip_3: "Services in Portuguese, English, and Spanish",
+      about_p1: "Massage therapy entered my life through a desire to work directly with people. I believe in the power of prevention and promote this through one of the oldest and most relevant medicines in the world, Chinese medicine.",
+      about_p2: "Being able to provide health and well-being in a humane and natural way brings me great personal satisfaction. I specialize in offering relief from muscle pain, stress reduction, and improving quality of life.",
+      about_p3: "I believe in touch as a tool of care and in the service as a safe, welcoming space.",
+      about_p4: "I bring <strong>sterilized sheets and towels</strong>, used only once. If you already have a table, tell me when booking.",
+      svc_eyebrow: "WHAT I DO",
+      svc_title: "Choose by what hurts, not the technical name.",
+      svc1_for: "STIFF BACK AND NECK",
+      svc1_name: "Neuromyofascial release",
+      svc1_desc: "Point-by-point work on the fascia to release tension that always returns to the same spot.",
+      svc2_for: "SWELLING, HEAVY LEGS, POST-OP",
+      svc2_name: "Lymphatic drainage",
+      svc2_desc: "Slow movements that help the body remove stagnant fluids.",
+      svc3_for: "SKIN CONTOURING AND FIRMNESS",
+      svc3_name: "Modeling massage",
+      svc3_desc: "Firm and rhythmic pressure. Works best in a sequence of sessions, not just one.",
+      svc4_for: "FULL HEAD, POOR SLEEP",
+      svc4_name: "Relaxing massage",
+      svc4_desc: "Constant rhythm and silence. This is the session for those who just need to disconnect.",
+      reviews_eyebrow: "WHAT THEY SAY",
+      reviews_title: "Eleven people let a stranger into their home. No rating below a five.",
+      reviews_count: "11 reviews on Google",
+      quote_1: "“I had some pain from the gym and left the massage feeling like new, I forgot my pain and was super relaxed. Highly worth it, Ligia has an incredible technique.”",
+      quote_2: "“Ligia applies the perfect amount of pressure by periodically checking with me on my comfort level. She has relieved the pain and increased the range of motion in my shoulder.”",
+      quote_3: "“Extremely attentive and professional, I have already recommended her to all my friends.”",
+      btn_more_reviews: "See more reviews on Google",
+      final_title: "Tell me the neighborhood and day. I bring the rest.",
+      final_lede: "Same-day response. No registration, no app.",
+      final_trust_1: "Directly with me, no middlemen",
+      final_trust_2: "Copacabana, Barra, Tijuca, Recreio, and Centro · 9am to 8pm",
+      footer_contact: "Contact me",
+      footer_call: "Call",
+      footer_note: "Ligia Possu · At-home Massage Therapist · Rio de Janeiro · Available 9am to 8pm"
+    },
+    es: {
+      brand_subtitle: "Masoterapia · por Ligia Possu",
+      nav_schedule: "Reservar",
+      hero_eyebrow: "MASOTERAPIA A DOMICILIO · RÍO DE JANEIRO",
+      hero_title: "Después del masaje, no tienes que ir a ningún lado.",
+      hero_lede: "Llevo la camilla, los aceites y las toallas a tu casa. Tú eliges la hora, te acuestas y te quedas.",
+      hero_trust_reviews: "5,0 · 11 reseñas en Google",
+      hero_trust_areas: "Copacabana, Barra, Tijuca, Recreio y Centro · Atiendo de 9h a 20h",
+      btn_whatsapp: "Reservar en WhatsApp",
+      hero_questions: "¿Aún tienes dudas? Pregunta antes de reservar →",
+      about_eyebrow: "QUIÉN VA A TU CASA",
+      about_chip_1: "Formada en Fisiomasoterapia, 2024",
+      about_chip_2: "Atendiendo en Río desde hace casi 3 años",
+      about_chip_3: "Atiendo en portugués, inglés y español",
+      about_p1: "La masoterapia entró en mi vida por el deseo de trabajar directamente con las personas. Creo en el poder de la prevención y lo promuevo a través de una de las medicinas más antiguas y relevantes del mundo, la medicina china.",
+      about_p2: "Poder proporcionar salud y bienestar de forma humana y natural me produce una gran satisfacción personal. Me especialicé para ofrecer alivio de dolores musculares, reducción del estrés y mejora de la calidad de vida.",
+      about_p3: "Creo en el tacto como herramienta de cuidado y en la atención como un espacio seguro de acogida.",
+      about_p4: "Llevo <strong>sábanas y toallas esterilizadas</strong>, de un solo uso. Si ya tienes camilla, dímelo al reservar.",
+      svc_eyebrow: "LO QUE HAGO",
+      svc_title: "Elige por lo que te duele, no por el nombre técnico.",
+      svc1_for: "ESPALDA Y CUELLO RÍGIDOS",
+      svc1_name: "Liberación neuromiofascial",
+      svc1_desc: "Trabajo punto por punto en la fascia para liberar la tensión que siempre vuelve al mismo lugar.",
+      svc2_for: "HINCHAZÓN, PIERNAS PESADAS, POSTOPERATORIO",
+      svc2_name: "Drenaje linfático",
+      svc2_desc: "Movimientos lentos que ayudan al cuerpo a eliminar el líquido retenido.",
+      svc3_for: "CONTORNO Y FIRMEZA DE LA PIEL",
+      svc3_name: "Masaje modelador",
+      svc3_desc: "Presión firme y rítmica. Funciona en secuencia de sesiones, no en una sola.",
+      svc4_for: "CABEZA LLENA, MAL SUEÑO",
+      svc4_name: "Masaje relajante",
+      svc4_desc: "Ritmo constante y silencio. Es la sesión para quienes solo necesitan desconectar.",
+      reviews_eyebrow: "LO QUE DICEN",
+      reviews_title: "Once personas dejaron entrar a una desconocida a su casa. Ninguna nota por debajo de cinco.",
+      reviews_count: "11 reseñas en Google",
+      quote_1: "“Tenía algunos dolores por el gimnasio y salí del masaje como nuevo, olvidé mis dolores y súper relajado. Vale mucho la pena, Ligia tiene una técnica increíble.”",
+      quote_2: "“Ligia applies the perfect amount of pressure by periodically checking with me on my comfort level. She has relieved the pain and increased the range of motion in my shoulder.”", /* Kept original English quote as it's a direct quote */
+      quote_3: "“Extremadamente atenta y profesional, ya la he recomendado a todos mis amigos.”",
+      btn_more_reviews: "Ver más reseñas en Google",
+      final_title: "Dime el barrio y el día. Yo llevo el resto.",
+      final_lede: "Respuesta en el mismo día. Sin registro y sin aplicación.",
+      final_trust_1: "Directo conmigo, sin intermediarios",
+      final_trust_2: "Copacabana, Barra, Tijuca, Recreio y Centro · de 9h a 20h",
+      footer_contact: "Hablar conmigo",
+      footer_call: "Llamar",
+      footer_note: "Ligia Possu · Masoterapeuta a domicilio · Río de Janeiro · Atiendo de 9h a 20h"
+    },
+    fr: {
+      brand_subtitle: "Massothérapie · par Ligia Possu",
+      nav_schedule: "Réserver",
+      hero_eyebrow: "MASSOTHÉRAPIE À DOMICILE · RIO DE JANEIRO",
+      hero_title: "Après le massage, vous n'avez besoin d'aller nulle part.",
+      hero_lede: "J'apporte la table, les huiles et les serviettes chez vous. Vous choisissez l'heure, vous vous allongez et vous restez.",
+      hero_trust_reviews: "5,0 · 11 avis sur Google",
+      hero_trust_areas: "Copacabana, Barra, Tijuca, Recreio et Centro · Disponible de 9h à 20h",
+      btn_whatsapp: "Réserver sur WhatsApp",
+      hero_questions: "Encore des doutes ? Demandez avant de réserver →",
+      about_eyebrow: "QUI VIENT CHEZ VOUS",
+      about_chip_1: "Diplômée en Physiomassothérapie, 2024",
+      about_chip_2: "Exerce à Rio depuis près de 3 ans",
+      about_chip_3: "Services en portugais, anglais et espagnol",
+      about_p1: "La massothérapie est entrée dans ma vie par la volonté de travailler directement avec les gens. Je crois au pouvoir de la prévention et je la promeus à travers l'une des médecines les plus anciennes et les plus pertinentes au monde, la médecine chinoise.",
+      about_p2: "Pouvoir offrir santé et bien-être de manière humaine et naturelle m'apporte une grande satisfaction personnelle. Je me suis spécialisée pour soulager les douleurs musculaires, réduire le stress et améliorer la qualité de vie.",
+      about_p3: "Je crois au toucher comme outil de soin et à la consultation comme un espace d'accueil sûr.",
+      about_p4: "J'apporte <strong>des draps et des serviettes stérilisés</strong>, à usage unique. Si vous avez déjà une table, dites-le-moi lors de la réservation.",
+      svc_eyebrow: "CE QUE JE FAIS",
+      svc_title: "Choisissez en fonction de ce qui vous fait mal, pas du nom technique.",
+      svc1_for: "DOS ET COU BLOQUÉS",
+      svc1_name: "Libération neuromyofasciale",
+      svc1_desc: "Travail point par point sur le fascia pour relâcher la tension qui revient toujours au même endroit.",
+      svc2_for: "GONFLEMENT, JAMBES LOURDES, POST-OPÉRATOIRE",
+      svc2_name: "Drainage lymphatique",
+      svc2_desc: "Mouvements lents qui aident le corps à éliminer les liquides stagnants.",
+      svc3_for: "CONTOUR ET FERMETÉ DE LA PEAU",
+      svc3_name: "Massage remodelant",
+      svc3_desc: "Pression ferme et rythmée. Fonctionne en série de séances, pas en une seule.",
+      svc4_for: "TÊTE PLEINE, MAUVAIS SOMMEIL",
+      svc4_name: "Massage relaxant",
+      svc4_desc: "Rythme constant et silence. C'est la séance pour ceux qui ont juste besoin de se déconnecter.",
+      reviews_eyebrow: "CE QU'ILS DISENT",
+      reviews_title: "Onze personnes ont laissé une inconnue entrer chez elles. Aucune note en dessous de cinq.",
+      reviews_count: "11 avis sur Google",
+      quote_1: "“J'avais des douleurs à cause de la salle de sport et je suis sorti du massage comme neuf, j'ai oublié mes douleurs et super détendu. Ça vaut vraiment la peine, Ligia a une technique incroyable.”",
+      quote_2: "“Ligia applies the perfect amount of pressure by periodically checking with me on my comfort level. She has relieved the pain and increased the range of motion in my shoulder.”",
+      quote_3: "“Extrêmement attentionnée et professionnelle, je l'ai déjà recommandée à tous mes amis.”",
+      btn_more_reviews: "Voir plus d'avis sur Google",
+      final_title: "Dites-moi le quartier et le jour. J'apporte le reste.",
+      final_lede: "Réponse le jour même. Sans inscription et sans application.",
+      final_trust_1: "Directement avec moi, sans intermédiaire",
+      final_trust_2: "Copacabana, Barra, Tijuca, Recreio et Centro · de 9h à 20h",
+      footer_contact: "Me contacter",
+      footer_call: "Appeler",
+      footer_note: "Ligia Possu · Massothérapeute à domicile · Rio de Janeiro · Disponible de 9h à 20h"
+    }
+  };
+
+  // Function to update the page text based on selected language
+  function setLanguage(lang) {
+    // Update HTML lang attribute
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+
+    // Find all elements with data-i18n attribute
+    const elements = document.querySelectorAll('[data-i18n]');
+    
+    elements.forEach(element => {
+      const key = element.getAttribute('data-i18n');
+      if (translations[lang] && translations[lang][key]) {
+        // Use innerHTML if the original translation contains HTML tags (like <strong>)
+        if (translations[lang][key].includes('<')) {
+           element.innerHTML = translations[lang][key];
+        } else {
+           element.textContent = translations[lang][key];
+        }
+      }
+    });
+
+    // Update active state of buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.getAttribute('data-lang') === lang) {
+        btn.classList.add('active');
+      }
+    });
+    
+    // Save preference to localStorage (optional, good UX)
+    localStorage.setItem('preferredLang', lang);
+  }
+
+  // Event listeners for language buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const lang = e.target.getAttribute('data-lang');
+      setLanguage(lang);
+    });
+  });
+
+  // Check for saved preference on load
+  document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('preferredLang');
+    if (savedLang && translations[savedLang]) {
+      setLanguage(savedLang);
+    }
+  });
+
+</script>
 </body>
 </html>
