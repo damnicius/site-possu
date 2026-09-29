@@ -592,6 +592,22 @@
   @media (max-width: 768px) {
     .dock { display: block; }
     body { padding-bottom: 90px; }
+
+    .final-flow-grid {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+
+    .final-card {
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      align-items: center;
+    }
+
+    .location-tags-mini {
+      justify-content: center;
+    }
   }
 </style>
 </head>
@@ -856,7 +872,7 @@
           <span class="tag-mini">Tijuca</span>
           <span class="tag-mini">Recreio</span>
           <span class="tag-mini">Centro</span>
-
+          <span class="tag-mini" data-i18n="final_area_other">Outras localidades</span>
         </div>
       </div>
 
@@ -999,6 +1015,7 @@
       final_title: "Me diga o bairro e o dia. Eu levo o resto.",
       final_lede: "Atendimento domiciliar prático, personalizado e sem complicações.",
       final_card1_title: "Bairros Atendidos",
+      final_area_other: "Outras localidades",
       final_card1_desc: "Atendimento presencial direto na sua residência:",
       final_card2_title: "Horário Flexível",
       final_card2_desc: "De segunda a domingo, das <strong>09h às 20h</strong>. Resposta rápida no mesmo dia.",
@@ -1074,6 +1091,7 @@
       final_title: "Tell me the neighborhood and day. I bring the rest.",
       final_lede: "Practical, personalized, and hassle-free at-home service.",
       final_card1_title: "Neighborhoods Covered",
+      final_area_other: "Other locations",
       final_card1_desc: "In-person service directly at your residence:",
       final_card2_title: "Flexible Hours",
       final_card2_desc: "Monday to Sunday, <strong>9am to 8pm</strong>. Fast same-day response.",
@@ -1149,6 +1167,7 @@
       final_title: "Dime el barrio y el día. Yo llevo el resto.",
       final_lede: "Atención a domicilio práctica, personalizada y sin complicaciones.",
       final_card1_title: "Barrios Atendidos",
+      final_area_other: "Otras localidades",
       final_card1_desc: "Atención presencial directamente en tu residencia:",
       final_card2_title: "Horario Flexible",
       final_card2_desc: "De lunes a domingo, de <strong>9h a 20h</strong>. Respuesta rápida el mismo día.",
@@ -1224,6 +1243,7 @@
       final_title: "Dites-moi le quartier et le jour. J'apporte le reste.",
       final_lede: "Service à domicile pratique, personnalisé et sans tracas.",
       final_card1_title: "Quartiers Desservis",
+      final_area_other: "Autres localités",
       final_card1_desc: "Intervention directe à votre domicile :",
       final_card2_title: "Horaires Flexibles",
       final_card2_desc: "Du lundi au dimanche, de <strong>9h à 20h</strong>. Réponse rapide le jour mesmo.",
@@ -1299,6 +1319,7 @@
       final_title: "Dimmi il quartiere e il giorno. Porto io il resto.",
       final_lede: "Servizio a domicilio pratico, personalizzato e senza complicazioni.",
       final_card1_title: "Quartieri Serviti",
+      final_area_other: "Altre località",
       final_card1_desc: "Servizio direttamente a casa tua:",
       final_card2_title: "Orari Flessibili",
       final_card2_desc: "Da lunedì a domenica, dalle <strong>9:00 alle 20:00</strong>. Risposta rapida in giornata.",
