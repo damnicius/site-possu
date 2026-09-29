@@ -3,172 +3,679 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ligia Possu</title>
+<title>Ligia Possu | Massoterapeuta</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=Karla:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Ruda:wght@400;600;700;800&display=swap">
 <link rel="stylesheet" href="site.css">
 <style>
-  /* Basic styling for the language selector */
-  .lang-selector {
-    position: absolute;
+  :root {
+    --font-primary: 'Ruda', sans-serif;
+    --font-secondary: 'Karla', sans-serif;
+    --bg-color: #f7f4ee;
+    --card-bg: #ffffff;
+    --text-main: #2b2621;
+    --text-muted: #594f47;
+    --accent: #8b684c;
+    --accent-hover: #70523b;
+    --border-light: #e6dfd5;
+  }
+
+  body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  .wrap {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Cabeçalho Unificado Flutuante (Glassmorphism) */
+  header {
+    position: fixed;
     top: 1rem;
-    right: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.38);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 50px;
+    padding: 0.6rem 1.5rem;
+    box-shadow: 0 10px 30px rgba(43, 38, 33, 0.08);
+  }
+
+  .bar {
     display: flex;
-    gap: 0.5rem;
-    z-index: 100;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand img {
+    max-height: 32px;
+    width: auto;
+    display: block;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  /* Seletor de Idiomas Integrado */
+  .lang-selector {
+    display: flex;
+    gap: 0.2rem;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 0.2rem 0.4rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-light);
   }
   .lang-btn {
     background: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: none;
+    border-radius: 16px;
     padding: 0.2rem 0.5rem;
     cursor: pointer;
-    font-family: inherit;
-    font-size: 0.8rem;
-    color: #555;
+    font-family: var(--font-primary);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
     transition: all 0.2s ease;
   }
   .lang-btn:hover {
-    background-color: #f0f0f0;
+    color: var(--accent);
   }
   .lang-btn.active {
-    background-color: #333;
+    background-color: var(--accent);
     color: #fff;
-    border-color: #333;
   }
-  
-  /* Make sure header doesn't overlap on small screens */
-  @media (max-width: 600px) {
-    .lang-selector {
-      top: 0.5rem;
-      right: 0.5rem;
+
+  /* Hero */
+  .hero {
+    padding: 9rem 0 5rem 0;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
     }
     header {
-      padding-top: 2.5rem;
+      width: 95%;
+      padding: 0.5rem 1rem;
     }
   }
 
-  /* Ensure the grid items stretch to match the tallest one */
+  .hero-text .eyebrow, .story .eyebrow, .sec-heavy .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  .hero-text h1 {
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+    font-weight: 800;
+  }
+  .hero-text .lede {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .hero-figure img, .about-figure img {
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+    object-fit: cover;
+    box-shadow: 0 24px 48px rgba(43, 38, 33, 0.08);
+  }
+
+  /* Seção Story */
+  .story {
+    padding: 6rem 0;
+    background: #f0ebe1;
+    border-radius: 32px;
+    margin: 2rem auto;
+    width: 92%;
+  }
+  .who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .who-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+  .who-text h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1.2rem;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .chip {
+    background: #e4dccc;
+    color: var(--text-main);
+    padding: 0.35rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .who-text p {
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+  }
+
+  /* Serviços */
+  .sec-heavy {
+    padding: 6rem 0;
+  }
+  .sec-heavy h2 {
+    font-size: 2.4rem;
+    margin-bottom: 3rem;
+    max-width: 650px;
+  }
   .svc {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.8rem;
+    align-items: stretch;
+  }
+  .card-link {
+    text-decoration: none !important;
+    color: inherit;
+    display: block;
+    height: 100%;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  }
+  .card-link:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(43, 38, 33, 0.08);
+  }
+  .card-link .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-light);
+    border-radius: 20px;
+    padding: 2.2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+  .svc-head {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+  .badge {
+    width: 40px;
+    height: 40px;
+    background: #f7f4ee;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+  }
+  .badge svg {
+    width: 20px;
+    height: 20px;
+  }
+  .card .for {
+    font-size: 0.7rem;
+    letter-spacing: 1.2px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .card h3 {
+    font-size: 1.35rem;
+    margin: 0.4rem 0 1rem 0;
+    font-weight: 700;
+  }
+  .card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+  }
+  .card-link .card .svc-meta {
+    margin-top: auto;
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: 1rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border-light);
+  }
+
+  /* Depoimentos */
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 2.5rem;
+  }
+  .rating .n {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+  .quotes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.8rem;
+    margin-bottom: 3rem;
+  }
+  .quote {
+    background: var(--card-bg);
+    border: 1px solid var(--border-light);
+    border-radius: 20px;
+    padding: 2.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .quote p {
+    font-style: italic;
+    color: var(--text-main);
+    line-height: 1.7;
+    margin: 1.2rem 0;
+    font-size: 1.05rem;
+  }
+  .quote .who {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .avatar {
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  /* Bloco Final Reestruturado & Harmonizado */
+  .final {
+    background: #f0ebe1;
+    color: var(--text-main);
+    padding: 5rem 2rem;
+    text-align: center;
+    border-radius: 32px;
+    margin: 4rem auto;
+    width: 92%;
+    max-width: 1200px;
+    box-sizing: border-box;
+  }
+  .final h2 {
+    color: var(--text-main);
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    margin-bottom: 0.8rem;
+    font-weight: 800;
+  }
+  .final .lede {
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+    font-size: 1.15rem;
+    text-align: center;
+  }
+
+  /* Grid Fluido do Bloco Final */
+  .final-flow-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
+    margin-bottom: 3.5rem;
+    text-align: left;
     align-items: stretch;
   }
-  
-  .card-link {
-    text-decoration: none !important; /* Force no underline */
-    color: inherit; /* Ensure text color inherits from parent */
-    display: block;
-    height: 100%; /* Make the link fill the grid cell */
+  .final-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-light);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 0 10px 25px rgba(43, 38, 33, 0.03);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-
-  /* Target all child elements to prevent text-decoration inheritance */
-  .card-link * {
-      text-decoration: none !important;
+  .final-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(43, 38, 33, 0.06);
+  }
+  .final-card-icon {
+    width: 44px;
+    height: 44px;
+    background: #f7f4ee;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+  }
+  .final-card h3 {
+    color: var(--text-main);
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+  }
+  .final-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .location-tags-mini {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.8rem;
+  }
+  .tag-mini {
+    background: #e4dccc;
+    color: var(--text-main);
+    padding: 0.3rem 0.75rem;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 600;
   }
 
-  .card-link:hover, 
-  .card-link:focus {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  /* Rodapé Perfeitamente Alinhado */
+  footer {
+    padding: 5rem 0 4rem 0;
+    border-top: 1px solid var(--border-light);
+    font-size: 0.95rem;
+    color: var(--text-main);
+    background-color: #f2ece1;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    max-width: 1120px;
+    margin: 0 auto 3rem auto;
+    text-align: left;
+    align-items: start;
+  }
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-col h3, .footer-col h4 {
+    color: var(--text-main);
+    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  .footer-col p {
+    color: var(--text-muted);
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .footer-col ul li {
+    margin-bottom: 0.6rem;
+  }
+  .footer-col ul li a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .footer-col ul li a:hover {
+    color: var(--accent);
+  }
+  .footer-bottom {
+    border-top: 1px solid var(--border-light);
+    padding-top: 2.5rem;
+    text-align: center;
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .footlinks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .footlinks a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    background: #ffffff;
+    padding: 0.65rem 1.3rem;
+    border-radius: 24px;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 2px 8px rgba(43, 38, 33, 0.04);
+    transition: all 0.25s ease;
+    font-size: 0.88rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  .footlinks a:hover {
+    color: #fff;
+    background-color: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(139, 104, 76, 0.2);
+  }
+  .footlinks a.btn-foot-primary {
+    background-color: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+  }
+  .footlinks a.btn-foot-primary:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+  }
+  .footnote {
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-align: center;
   }
 
-  .card-link .card {
-     transition: none; 
-     height: 100%; /* Make the card fill the link */
-     display: flex;
-     flex-direction: column;
+  /* Botões */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    background-color: var(--accent);
+    color: #fff;
+    padding: 0.8rem 1.6rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background 0.2s ease;
+    font-size: 0.95rem;
+  }
+  .btn:hover {
+    background-color: var(--accent-hover);
+  }
+  .google-review-btn {
+    background: rgba(255, 255, 255, 0.38) !important;
+    color: var(--text-main) !important;
+    border: 1px solid rgba(255, 255, 255, 0.65) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 8px 24px rgba(43, 38, 33, 0.08);
   }
 
-  /* Push the meta info to the bottom if the description is short */
-  .card-link .card .svc-meta {
-      margin-top: auto;
+  .google-review-btn:hover {
+    background: rgba(255, 255, 255, 0.52) !important;
+    color: var(--text-main) !important;
+    border-color: rgba(255, 255, 255, 0.8) !important;
+    box-shadow: 0 12px 28px rgba(43, 38, 33, 0.1);
+  }
+
+  .btn-sm {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+  }
+  .btn-block {
+    display: flex;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .link-arrow {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+  }
+  
+  /* Dock móvel */
+  .dock {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(247, 244, 238, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    border-top: 1px solid var(--border-light);
+    z-index: 999;
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .dock { display: block; }
+    body { padding-bottom: 90px; }
   }
 </style>
 </head>
 <body>
 
-<div class="lang-selector">
-  <button class="lang-btn active" data-lang="pt">PT</button>
-  <button class="lang-btn" data-lang="en">EN</button>
-  <button class="lang-btn" data-lang="es">ES</button>
-  <button class="lang-btn" data-lang="fr">FR</button>
-  <button class="lang-btn" data-lang="it">IT</button>
-</div>
-
 <header>
-  <div class="wrap wrap--wide bar">
+  <div class="bar">
     <div class="brand">
-      <img src="logo-possu.png" alt="" width="788" height="218">
-      <span data-i18n="brand_subtitle">Massoterapia · por Ligia Possu</span>
+      <img src="logo-possu.png" alt="Ligia Possu" width="788" height="218">
+      <span data-i18n="brand_subtitle" style="display:none">Massoterapia · por Ligia Possu</span>
     </div>
-    <a class="btn btn-sm" href="https://wa.me/5521967011479?text=Oi%20Ligia!%20Vi%20seu%20site%20e%20queria%20agendar%20uma%20massagem." rel="noopener">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      <span data-i18n="nav_schedule">Agendar</span>
-    </a>
+    <div class="header-right">
+      <div class="lang-selector">
+        <button class="lang-btn active" data-lang="pt">PT</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+      </div>
+      <a class="btn btn-sm" href="https://wa.me/5521967011479?text=Oi%20Ligia!%20Vi%20seu%20site%20e%20queria%20agendar%20uma%20massagem." rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span data-i18n="nav_schedule">Agendar</span>
+      </a>
+    </div>
   </div>
 </header>
 
 <section class="hero">
-  <div class="wrap wrap--wide">
+  <div class="wrap">
     <div class="hero-grid">
       <div class="hero-text">
         <p class="eyebrow" data-i18n="hero_eyebrow">MASSOTERAPIA A DOMICÍLIO · RIO DE JANEIRO</p>
-        <h1 data-i18n="hero_title">Depois da massagem, você não precisa ir a lugar algum.</h1>
+        <h1 data-i18n="hero_title">Depois da massagem, você não precisa ir a lugar nenhum.</h1>
         <p class="lede" data-i18n="hero_lede">Eu levo a maca, os óleos e as toalhas até a sua casa. Você escolhe o horário, deita e fica.</p>
-        <div class="trust">
-          <span class="trust-item"><span class="stars" aria-hidden="true">★★★★★</span> <span data-i18n="hero_trust_reviews">5,0 · 11 avaliações no Google</span></span>
+        <div class="trust" style="margin-bottom: 1.8rem; font-size: 0.9rem; color: var(--text-muted);">
+          <span class="trust-item"><span class="stars" aria-hidden="true" style="color: #d4a373;">★★★★★</span> <span data-i18n="hero_trust_reviews">5,0 · 11 avaliações no Google</span></span><br>
           <span class="trust-item" data-i18n="hero_trust_areas">Copacabana, Barra, Tijuca, Recreio, Centro e outras localidades · Atendo das 9h às 20h</span>
         </div>
-        <a class="btn btn-block" href="https://wa.me/5521967011479?text=Oi%20Ligia!%20Vi%20seu%20site%20e%20queria%20agendar%20uma%20massagem." rel="noopener" style="margin-top:var(--s5)">
+        <a class="btn btn-block" style="margin: 0 0 1.2rem 0;" href="https://wa.me/5521967011479?text=Oi%20Ligia!%20Vi%20seu%20site%20e%20queria%20agendar%20uma%20massagem." rel="noopener">
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           <span data-i18n="btn_whatsapp">Agendar no WhatsApp</span>
         </a>
-        <a class="link-arrow" href="https://wa.me/5521967011479?text=Oi%20Ligia!%20Tenho%20uma%20d%C3%BAvida%20antes%20de%20agendar." rel="noopener" style="margin-top:var(--s4)" data-i18n="hero_questions">Ainda com dúvidas? Pergunte antes de agendar →</a>
+        <a class="link-arrow" href="https://wa.me/5521967011479?text=Oi%20Ligia!%20Tenho%20uma%20d%C3%BAvida%20antes%20de%20agendar." rel="noopener" data-i18n="hero_questions">Ainda com dúvidas? Pergunte antes de agendar →</a>
       </div>
       <div class="figure hero-figure">
-        <img src="g09.webp" alt="" width="382" height="510" fetchpriority="high">
+        <img src="g09.webp" alt="Ligia Possu Massoterapeuta" width="382" height="510" fetchpriority="high">
       </div>
     </div>
   </div>
 </section>
 
-<section class="story">
-  <div class="wrap wrap--wide">
-    <p class="eyebrow" data-i18n="about_eyebrow">QUEM VAI ATÉ VOCÊ</p>
+<section class="story" id="sobre">
+  <div class="wrap">
     <div class="who-grid">
       <div class="figure about-figure">
-        <img src="g02.webp" alt="" width="371" height="510" loading="lazy">
+        <img src="g02.webp" alt="Ligia Possu" width="371" height="510" loading="lazy">
       </div>
       <div class="who-text">
-      <h2>Ligia Possu</h2>
-      <div class="chips">
-        <span class="chip" data-i18n="about_chip_1">Formada em Fisiomassoterapia, 2024</span>
-        <span class="chip" data-i18n="about_chip_2">Atendendo no Rio há quase 3 anos</span>
-        <span class="chip" data-i18n="about_chip_3">Atendo em português, inglês e espanhol</span>
-      </div>
-      <p data-i18n="about_p1">A massoterapia entrou na minha vida pela vontade de trabalhar diretamente com as pessoas. Acredito no poder da prevenção e promovo isso através de uma das medicinas mais antigas e relevantes do mundo, a medicina chinesa.</p>
-      <p data-i18n="about_p2">Poder proporcionar saúde e bem-estar de forma humana e natural me traz uma grande satisfação pessoal. Me especializei para oferecer alívio de dores musculares, redução do estresse e melhora da qualidade de vida.</p>
-      <p data-i18n="about_p3">Acredito no toque como ferramenta de cuidado e no atendimento como um espaço seguro de acolhimento.</p>
-      <p class="muted" style="margin-bottom:0" data-i18n="about_p4">Levo <strong>lençóis e toalhas esterilizados</strong>, usados uma vez só. Se você já tem maca, me diga quando marcar.</p>
+        <p class="eyebrow" data-i18n="about_eyebrow">QUEM VAI ATÉ VOCÊ</p>
+        <h2>Ligia Possu</h2>
+        <div class="chips">
+          <span class="chip" data-i18n="about_chip_1">Formada em Fisiomassoterapia, 2024</span>
+          <span class="chip" data-i18n="about_chip_2">Atendendo no Rio há quase 3 anos</span>
+          <span class="chip" data-i18n="about_chip_3">Atendo em português, inglês, espanhol e italiano</span>
+        </div>
+        <p data-i18n="about_p1">A massoterapia entrou na minha vida pela vontade de trabalhar diretamente com as pessoas. Acredito no poder da prevenção e promovo isso através de uma das medicinas mais antigas e relevantes do mundo, a medicina chinesa.</p>
+        <p data-i18n="about_p2">Poder proporcionar saúde e bem-estar de forma humana e natural me traz uma grande satisfação pessoal. Me especializei para oferecer alívio de dores musculares, redução do estresse e melhora da qualidade de vida.</p>
+        <p data-i18n="about_p3">Acredito no toque como ferramenta de cuidado e no atendimento como um espaço seguro de acolhimento.</p>
+        <p class="muted" style="margin-bottom:0; font-weight: 600;" data-i18n="about_p4">Levo <strong>lençóis e toalhas esterilizados</strong>, usados uma vez só. Se você já tem maca, me diga quando marcar.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="sec-heavy">
-  <div class="wrap wrap--wide">
+<section class="sec-heavy" id="servicos">
+  <div class="wrap">
     <p class="eyebrow" data-i18n="svc_eyebrow">O QUE EU FAÇO</p>
     <h2 data-i18n="svc_title">Escolha pelo que está doendo, não pelo nome técnico.</h2>
     <div class="svc">
-      <!-- 1. Liberação neuromiofascial / Miofascial + Relaxante -->
+      <!-- 1 -->
       <a href="https://api.whatsapp.com/send/?phone=5521967011479&text=Oi+Ligia%21+Vi+seu+site+e+queria+agendar+uma+massagem.&type=phone_number&app_absent=0" class="card-link" rel="noopener">
         <div class="card">
           <div class="svc-head">
-            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2v3M12 19v3M9 6h6M8 10h8M9 14h6M8 18h8"/></svg></span>
+            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v3M12 19v3M9 6h6M8 10h8M9 14h6M8 18h8"/></svg></span>
             <div class="for" data-i18n="svc1_for">COSTAS E PESCOÇO TRAVADOS</div>
           </div>
           <h3 data-i18n="svc1_name">Liberação miofascial + Relaxante</h3>
@@ -177,11 +684,11 @@
         </div>
       </a>
       
-      <!-- 2. Drenagem Linfática (incl. Pós-op) -->
+      <!-- 2 -->
       <a href="https://api.whatsapp.com/send/?phone=5521967011479&text=Oi+Ligia%21+Vi+seu+site+e+queria+agendar+uma+massagem.&type=phone_number&app_absent=0" class="card-link" rel="noopener">
         <div class="card">
           <div class="svc-head">
-            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3c4 5 6 8.5 6 11.5a6 6 0 0 1-12 0C6 11.5 8 8 12 3Z"/></svg></span>
+            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c4 5 6 8.5 6 11.5a6 6 0 0 1-12 0C6 11.5 8 8 12 3Z"/></svg></span>
             <div class="for" data-i18n="svc2_for">INCHAÇO, PERNAS PESADAS, PÓS-OPERATÓRIO</div>
           </div>
           <h3 data-i18n="svc2_name">Drenagem linfática</h3>
@@ -190,11 +697,11 @@
         </div>
       </a>
       
-      <!-- 3. Massagem Modeladora -->
+      <!-- 3 -->
       <a href="https://api.whatsapp.com/send/?phone=5521967011479&text=Oi+Ligia%21+Vi+seu+site+e+queria+agendar+uma+massagem.&type=phone_number&app_absent=0" class="card-link" rel="noopener">
         <div class="card">
           <div class="svc-head">
-            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/></svg></span>
+            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/></svg></span>
             <div class="for" data-i18n="svc3_for">CONTORNO E FIRMEZA DA PELE</div>
           </div>
           <h3 data-i18n="svc3_name">Massagem modeladora</h3>
@@ -203,11 +710,11 @@
         </div>
       </a>
       
-      <!-- 4. Massagem Relaxante (Swedish) -->
+      <!-- 4 -->
       <a href="https://api.whatsapp.com/send/?phone=5521967011479&text=Oi+Ligia%21+Vi+seu+site+e+queria+agendar+uma+massagem.&type=phone_number&app_absent=0" class="card-link" rel="noopener">
         <div class="card">
           <div class="svc-head">
-            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 3a9 9 0 1 0 6 15.9A9 9 0 0 1 15 3Z"/></svg></span>
+            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3a9 9 0 1 0 6 15.9A9 9 0 0 1 15 3Z"/></svg></span>
             <div class="for" data-i18n="svc4_for">CABEÇA CHEIA, SONO RUIM, ESTRESSE</div>
           </div>
           <h3 data-i18n="svc4_name">Massagem relaxante (Sueca)</h3>
@@ -216,11 +723,11 @@
         </div>
       </a>
 
-      <!-- 5. Deep Tissue -->
+      <!-- 5 -->
       <a href="https://api.whatsapp.com/send/?phone=5521967011479&text=Oi+Ligia%21+Vi+seu+site+e+queria+agendar+uma+massagem.&type=phone_number&app_absent=0" class="card-link" rel="noopener">
         <div class="card">
           <div class="svc-head">
-            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
             <div class="for" data-i18n="svc5_for">TENSÃO PROFUNDA E DORES CRÔNICAS</div>
           </div>
           <h3 data-i18n="svc5_name">Massagem Deep Tissue</h3>
@@ -229,11 +736,11 @@
         </div>
       </a>
 
-      <!-- 6. Pedras Quentes -->
+      <!-- 6 -->
       <a href="https://api.whatsapp.com/send/?phone=5521967011479&text=Oi+Ligia%21+Vi+seu+site+e+queria+agendar+uma+massagem.&type=phone_number&app_absent=0" class="card-link" rel="noopener">
         <div class="card">
           <div class="svc-head">
-            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 2.5-3 5-3 5s3-2.5 3-5a2 2 0 0 0-4 0v1a3 3 0 0 0-6 0v-1a2 2 0 0 0-4 0c0 2.5 3 5 3 5s-3-2.5-3-5a4 4 0 0 1 4-4Z"/><path d="M7 16a4 4 0 1 0 8 0c0-3-4-6-4-6s-4 3-4 6Z"/></svg></span>
+            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4c0 2.5-3 5-3 5s3-2.5 3-5a2 2 0 0 0-4 0v1a3 3 0 0 0-6 0v-1a2 2 0 0 0-4 0c0 2.5 3 5 3 5s-3-2.5-3-5a4 4 0 0 1 4-4Z"/><path d="M7 16a4 4 0 1 0 8 0c0-3-4-6-4-6s-4 3-4 6Z"/></svg></span>
             <div class="for" data-i18n="svc6_for">RELAXAMENTO EXTREMO E ANSIEDADE</div>
           </div>
           <h3 data-i18n="svc6_name">Massagem com Pedras Quentes</h3>
@@ -242,11 +749,11 @@
         </div>
       </a>
 
-      <!-- 7. Terapêutica + Ventosa -->
+      <!-- 7 -->
       <a href="https://api.whatsapp.com/send/?phone=5521967011479&text=Oi+Ligia%21+Vi+seu+site+e+queria+agendar+uma+massagem.&type=phone_number&app_absent=0" class="card-link" rel="noopener">
         <div class="card">
           <div class="svc-head">
-            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg></span>
+            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg></span>
             <div class="for" data-i18n="svc7_for">DORES LOCALIZADAS E CONTRATURAS</div>
           </div>
           <h3 data-i18n="svc7_name">Massagem Terapêutica + Ventosa</h3>
@@ -255,11 +762,11 @@
         </div>
       </a>
 
-      <!-- 8. Drenomodeladora -->
+      <!-- 8 -->
       <a href="https://api.whatsapp.com/send/?phone=5521967011479&text=Oi+Ligia%21+Vi+seu+site+e+queria+agendar+uma+massagem.&type=phone_number&app_absent=0" class="card-link" rel="noopener">
         <div class="card">
           <div class="svc-head">
-            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.2 7.8l-7.7 7.7-4-4-5.7 5.7"/><path d="M15 7h6v6"/></svg></span>
+            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.2 7.8l-7.7 7.7-4-4-5.7 5.7"/><path d="M15 7h6v6"/></svg></span>
             <div class="for" data-i18n="svc8_for">RETENÇÃO DE LÍQUIDOS E GORDURA LOCALIZADA</div>
           </div>
           <h3 data-i18n="svc8_name">Drenomodeladora</h3>
@@ -268,11 +775,11 @@
         </div>
       </a>
 
-      <!-- 9. Desportiva (To make it even 10) -->
+      <!-- 9 -->
       <a href="https://api.whatsapp.com/send/?phone=5521967011479&text=Oi+Ligia%21+Vi+seu+site+e+queria+agendar+uma+massagem.&type=phone_number&app_absent=0" class="card-link" rel="noopener">
         <div class="card">
           <div class="svc-head">
-            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span>
+            <span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span>
             <div class="for" data-i18n="svc10_for">PRÉ E PÓS-TREINO, FADIGA MUSCULAR</div>
           </div>
           <h3 data-i18n="svc10_name">Massagem Desportiva</h3>
@@ -286,70 +793,143 @@
 </section>
 
 <span id="avaliacoes"></span>
-<section class="story sec-heavy">
-  <div class="wrap wrap--wide">
+<section class="sec-heavy" style="background-color: #f0ebe1; border-radius: 32px; width: 92%; margin: 2rem auto;">
+  <div class="wrap">
     <p class="eyebrow" data-i18n="reviews_eyebrow">O QUE DIZEM</p>
-    <h2 data-i18n="reviews_title">Onze pessoas deixaram alguém desconhecido entrar em casa. Nenhuma nota abaixo de cinco.</h2>
+    <h2 data-i18n="reviews_title" style="margin-bottom: 2rem;">Onze pessoas deixaram alguém desconhecido entrar em casa. Nenhuma nota abaixo de cinco.</h2>
     <div class="rating">
       <div class="n">5,0</div>
       <div>
-        <div class="stars" aria-hidden="true">★★★★★</div>
-        <div class="txt-sm" data-i18n="reviews_count">11 avaliações no Google</div>
+        <div class="stars" aria-hidden="true" style="color: #d4a373;">★★★★★</div>
+        <div class="txt-sm" data-i18n="reviews_count" style="color: var(--text-muted); font-size: 0.9rem;">11 avaliações no Google</div>
       </div>
     </div>
     <div class="quotes">
       <div class="quote">
-        <div class="stars" aria-hidden="true">★★★★★</div>
-        <p data-i18n="quote_1">“Estava com algumas dores por conta da academia e saí da massagem como novo, eu esqueci minhas dores e super relaxado. Vale muito a pena, a Ligia tem uma técnica incrível.”</p>
+        <div>
+          <div class="stars" aria-hidden="true" style="color: #d4a373;">★★★★★</div>
+          <p data-i18n="quote_1">“Estava com algumas dores por conta da academia e saí da massagem como novo, eu esqueci minhas dores e super relaxado. Vale muito a pena, a Ligia tem uma técnica incrível.”</p>
+        </div>
         <div class="who"><span class="avatar" aria-hidden="true">I</span>Ignacio Reyes · Google</div>
       </div>
       <div class="quote">
-        <div class="stars" aria-hidden="true">★★★★★</div>
-        <p data-i18n="quote_2">“Ligia applies the perfect amount of pressure by periodically checking with me on my comfort level. She has relieved the pain and increased the range of motion in my shoulder.”</p>
+        <div>
+          <div class="stars" aria-hidden="true" style="color: #d4a373;">★★★★★</div>
+          <p data-i18n="quote_2">“Ligia applies the perfect amount of pressure by periodically checking with me on my comfort level. She has relieved the pain and increased the range of motion in my shoulder.”</p>
+        </div>
         <div class="who"><span class="avatar" aria-hidden="true">J</span>John Rasp · Google</div>
       </div>
       <div class="quote">
-        <div class="stars" aria-hidden="true">★★★★★</div>
-        <p data-i18n="quote_3">“Extremamente atenciosa e profissional, já a tenho recomendado a todos os meus amigos.”</p>
+        <div>
+          <div class="stars" aria-hidden="true" style="color: #d4a373;">★★★★★</div>
+          <p data-i18n="quote_3">“Extremamente atenciosa e profissional, já a tenho recomendado a todos os meus amigos.”</p>
+        </div>
         <div class="who"><span class="avatar" aria-hidden="true">T</span>Thiago Mácimo · Google</div>
       </div>
     </div>
     
-    <a class="btn btn-block" href="https://maps.app.goo.gl/ibxgKm8obhqSBdGu5" rel="noopener" target="_blank" style="margin-top:var(--s5)">
-      <span data-i18n="btn_more_reviews">Ver mais avaliações no Google</span>
-    </a>
+    <div style="text-align: center;">
+      <a class="btn google-review-btn" href="https://maps.app.goo.gl/ibxgKm8obhqSBdGu5" rel="noopener" target="_blank">
+        <span data-i18n="btn_more_reviews">Ver mais avaliações no Google</span>
+      </a>
+    </div>
   </div>
 </section>
 
+<!-- SEÇÃO FINAL REESTRUTURADA E FLUIDA -->
 <span id="perguntas"></span>
 <section class="final">
-  <div class="wrap wrap--wide">
+  <div class="wrap">
     <h2 data-i18n="final_title">Me diga o bairro e o dia. Eu levo o resto.</h2>
-    <p class="lede" data-i18n="final_lede">Resposta no mesmo dia. Sem cadastro e sem aplicativo.</p>
-    <div class="trust">
-      <span class="trust-item"><span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 4V5Z"/></svg></span><span data-i18n="final_trust_1">Direto comigo, sem intermediário</span></span>
-      <span class="trust-item"><span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span><span data-i18n="final_trust_2">Copacabana, Barra, Tijuca, Recreio, Centro e outras localidades · das 9h às 20h</span></span>
+    <p class="lede" data-i18n="final_lede" style="display: block; width: 100%; max-width: none; margin: 0 auto 3rem; text-align: center;">Atendimento domiciliar prático, personalizado e sem complicações.</p>
+    
+    <div class="final-flow-grid">
+      <div class="final-card">
+        <div class="final-card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3 data-i18n="final_card1_title">Bairros Atendidos</h3>
+        <p data-i18n="final_card1_desc">Atendimento presencial direto na sua residência:</p>
+        <div class="location-tags-mini">
+          <span class="tag-mini">Copacabana</span>
+          <span class="tag-mini">Barra</span>
+          <span class="tag-mini">Tijuca</span>
+          <span class="tag-mini">Recreio</span>
+          <span class="tag-mini">Centro</span>
+
+        </div>
+      </div>
+
+      <div class="final-card">
+        <div class="final-card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3 data-i18n="final_card2_title">Horário Flexível</h3>
+        <p data-i18n="final_card2_desc">De segunda a domingo, das <strong>09h às 20h</strong>. Resposta rápida no mesmo dia.</p>
+      </div>
+
+      <div class="final-card">
+        <div class="final-card-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+        </div>
+        <h3 data-i18n="final_card3_title">Comodidade Total</h3>
+        <p data-i18n="final_card3_desc">Levo maca profissional, óleos e toalhas higienizadas. Sem necessidade de app ou cadastro.</p>
+      </div>
     </div>
-    <a class="btn btn-block" href="https://wa.me/5521967011479?text=Oi%20Ligia!%20Vi%20seu%20site%20e%20queria%20agendar%20uma%20massagem." rel="noopener" style="margin-top:var(--s5)">
+
+    <a class="btn btn-block" href="https://wa.me/5521967011479?text=Oi%20Ligia!%20Vi%20seu%20site%20e%20queria%20agendar%20uma%20massagem." rel="noopener">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       <span data-i18n="btn_whatsapp">Agendar no WhatsApp</span>
     </a>
   </div>
 </section>
 
+<!-- RODAPÉ PERFEITAMENTE ALINHADO -->
 <footer>
-  <div class="wrap wrap--wide">
-    <div class="footgrid">
-      <div class="footcol">
-        <div class="foothead" data-i18n="footer_contact">Falar comigo</div>
-        <div class="footlinks">
-        <a href="https://wa.me/5521967011479?text=Oi%20Ligia!%20Vi%20seu%20site%20e%20queria%20agendar%20uma%20massagem." rel="noopener">WhatsApp (21) 96701-1479</a>
-        <a href="tel:+5521967011479" data-i18n="footer_call">Ligar</a>
-        <a href="https://www.instagram.com/ligiapossu/" rel="noopener">Instagram @ligiapossu</a>
-        </div>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Ligia Possu</h3>
+        <p data-i18n="footer_desc">Massoterapia especializada para o seu bem-estar, equilíbrio e qualidade de vida no Rio de Janeiro.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-main);" data-i18n="footer_langs">
+          Idiomas: <strong>Português | Italiano | English | Español | Français</strong>
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4 data-i18n="footer_nav_title">Navegação</h4>
+        <ul>
+          <li><a href="#" data-i18n="footer_nav_home">Início</a></li>
+          <li><a href="#sobre" data-i18n="footer_nav_about">Sobre Mim</a></li>
+          <li><a href="#servicos" data-i18n="footer_nav_services">Serviços</a></li>
+          <li><a href="#avaliacoes" data-i18n="footer_nav_reviews">Avaliações</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 data-i18n="footer_hours_title">Horário de Atendimento</h4>
+        <p data-i18n="footer_hours_desc">Segunda a Domingo<br><strong>Das 9h às 20h</strong></p>
+        <p style="margin-top: 0.8rem; font-size: 0.85rem;" data-i18n="footer_areas_desc">Copacabana, Barra, Tijuca, Recreio, Centro e Regiões.</p>
       </div>
     </div>
-    <div class="footnote" data-i18n="footer_note">Ligia Possu · Massoterapeuta a domicílio · Rio de Janeiro · Atendo das 9h às 20h</div>
+
+    <div class="footer-bottom">
+      <div class="footlinks">
+        <a href="https://wa.me/5521967011479?text=Oi%20Ligia!%20Vi%20seu%20site%20e%20queria%20agendar%20uma%20massagem." rel="noopener" class="btn-foot-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <span>WhatsApp (21) 96701-1479</span>
+        </a>
+        <a href="tel:+5521967011479">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span data-i18n="footer_call">Ligar</span>
+        </a>
+        <a href="https://www.instagram.com/ligiapossu/" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          <span>Instagram @ligiapossu</span>
+        </a>
+      </div>
+      <div class="footnote" data-i18n="footer_note">Ligia Possu · Massoterapeuta a domicílio · Rio de Janeiro · Atendo das 9h às 20h</div>
+    </div>
   </div>
 </footer>
 
@@ -361,7 +941,6 @@
 </div>
 
 <script>
-  // Dictionary containing translations for PT, EN, ES, FR, and IT
   const translations = {
     pt: {
       brand_subtitle: "Massoterapia · por Ligia Possu",
@@ -376,7 +955,7 @@
       about_eyebrow: "QUEM VAI ATÉ VOCÊ",
       about_chip_1: "Formada em Fisiomassoterapia, 2024",
       about_chip_2: "Atendendo no Rio há quase 3 anos",
-      about_chip_3: "Atendo em português, inglês e espanhol",
+      about_chip_3: "Atendo em português, inglês, espanhol e italiano",
       about_p1: "A massoterapia entrou na minha vida pela vontade de trabalhar diretamente com as pessoas. Acredito no poder da prevenção e promovo isso através de uma das medicinas mais antigas e relevantes do mundo, a medicina chinesa.",
       about_p2: "Poder proporcionar saúde e bem-estar de forma humana e natural me traz uma grande satisfação pessoal. Me especializei para oferecer alívio de dores musculares, redução do estresse e melhora da qualidade de vida.",
       about_p3: "Acredito no toque como ferramenta de cuidado e no atendimento como um espaço seguro de acolhimento.",
@@ -407,9 +986,6 @@
       svc8_for: "RETENÇÃO DE LÍQUIDOS E GORDURA LOCALIZADA",
       svc8_name: "Drenomodeladora",
       svc8_desc: "Une o desinchaço da drenagem linfática com a modelagem vigorosa para redefinir contornos.",
-      svc9_for: "FLACIDEZ, CELULITE E CANSAÇO",
-      svc9_name: "Bambuterapia",
-      svc9_desc: "Uso de bambus de diferentes tamanhos que agem como um rolo compressor na tensão e na modelagem corporal.",
       svc10_for: "PRÉ E PÓS-TREINO, FADIGA MUSCULAR",
       svc10_name: "Massagem Desportiva",
       svc10_desc: "Forte e rápida, focada em preparar a musculatura para o esporte ou acelerar a recuperação após esforço.",
@@ -421,10 +997,23 @@
       quote_3: "“Extremamente atenciosa e profissional, já a tenho recomendado a todos os meus amigos.”",
       btn_more_reviews: "Ver mais avaliações no Google",
       final_title: "Me diga o bairro e o dia. Eu levo o resto.",
-      final_lede: "Resposta no mesmo dia. Sem cadastro e sem aplicativo.",
-      final_trust_1: "Direto comigo, sem intermediário",
-      final_trust_2: "Copacabana, Barra, Tijuca, Recreio, Centro e outras localidades · das 9h às 20h",
-      footer_contact: "Falar comigo",
+      final_lede: "Atendimento domiciliar prático, personalizado e sem complicações.",
+      final_card1_title: "Bairros Atendidos",
+      final_card1_desc: "Atendimento presencial direto na sua residência:",
+      final_card2_title: "Horário Flexível",
+      final_card2_desc: "De segunda a domingo, das <strong>09h às 20h</strong>. Resposta rápida no mesmo dia.",
+      final_card3_title: "Comodidade Total",
+      final_card3_desc: "Levo maca profissional, óleos e toalhas higienizadas. Sem necessidade de app ou cadastro.",
+      footer_desc: "Massoterapia especializada para o seu bem-estar, equilíbrio e qualidade de vida no Rio de Janeiro.",
+      footer_langs: "Idiomas: <strong>Português | Italiano | English | Español | Français</strong>",
+      footer_nav_title: "Navegação",
+      footer_nav_home: "Início",
+      footer_nav_about: "Sobre Mim",
+      footer_nav_services: "Serviços",
+      footer_nav_reviews: "Avaliações",
+      footer_hours_title: "Horário de Atendimento",
+      footer_hours_desc: "Segunda a Domingo<br><strong>Das 9h às 20h</strong>",
+      footer_areas_desc: "Copacabana, Barra, Tijuca, Recreio, Centro e Regiões.",
       footer_call: "Ligar",
       footer_note: "Ligia Possu · Massoterapeuta a domicílio · Rio de Janeiro · Atendo das 9h às 20h"
     },
@@ -441,7 +1030,7 @@
       about_eyebrow: "WHO COMES TO YOU",
       about_chip_1: "Graduated in Physiomassotherapy, 2024",
       about_chip_2: "Working in Rio for almost 3 years",
-      about_chip_3: "Services in Portuguese, English, and Spanish",
+      about_chip_3: "Services in Portuguese, English, Spanish, and Italian",
       about_p1: "Massage therapy entered my life through a desire to work directly with people. I believe in the power of prevention and promote this through one of the oldest and most relevant medicines in the world, Chinese medicine.",
       about_p2: "Being able to provide health and well-being in a humane and natural way brings me great personal satisfaction. I specialize in offering relief from muscle pain, stress reduction, and improving quality of life.",
       about_p3: "I believe in touch as a tool of care and in the service as a safe, welcoming space.",
@@ -472,9 +1061,6 @@
       svc8_for: "FLUID RETENTION AND LOCALIZED FAT",
       svc8_name: "Lymphatic-Modeling Massage",
       svc8_desc: "Combines the de-puffing of lymphatic drainage with vigorous modeling to redefine contours.",
-      svc9_for: "SAGGING, CELLULITE AND FATIGUE",
-      svc9_name: "Bamboo Therapy",
-      svc9_desc: "Use of bamboos of different sizes acting like a roller on tension and body contouring.",
       svc10_for: "PRE AND POST-WORKOUT, MUSCLE FATIGUE",
       svc10_name: "Sports Massage",
       svc10_desc: "Strong and fast, focused on preparing muscles for sports or accelerating recovery after exertion.",
@@ -486,10 +1072,23 @@
       quote_3: "“Extremely attentive and professional, I have already recommended her to all my friends.”",
       btn_more_reviews: "See more reviews on Google",
       final_title: "Tell me the neighborhood and day. I bring the rest.",
-      final_lede: "Same-day response. No registration, no app.",
-      final_trust_1: "Directly with me, no middlemen",
-      final_trust_2: "Copacabana, Barra, Tijuca, Recreio, Centro, and other locations · 9am to 8pm",
-      footer_contact: "Contact me",
+      final_lede: "Practical, personalized, and hassle-free at-home service.",
+      final_card1_title: "Neighborhoods Covered",
+      final_card1_desc: "In-person service directly at your residence:",
+      final_card2_title: "Flexible Hours",
+      final_card2_desc: "Monday to Sunday, <strong>9am to 8pm</strong>. Fast same-day response.",
+      final_card3_title: "Total Convenience",
+      final_card3_desc: "I bring a professional table, oils, and sanitized towels. No app or signup required.",
+      footer_desc: "Specialized massage therapy for your well-being, balance, and quality of life in Rio de Janeiro.",
+      footer_langs: "Languages: <strong>Portuguese | Italian | English | Spanish | French</strong>",
+      footer_nav_title: "Navigation",
+      footer_nav_home: "Home",
+      footer_nav_about: "About Me",
+      footer_nav_services: "Services",
+      footer_nav_reviews: "Reviews",
+      footer_hours_title: "Working Hours",
+      footer_hours_desc: "Monday to Sunday<br><strong>9am to 8pm</strong>",
+      footer_areas_desc: "Copacabana, Barra, Tijuca, Recreio, Centro, and surroundings.",
       footer_call: "Call",
       footer_note: "Ligia Possu · At-home Massage Therapist · Rio de Janeiro · Available 9am to 8pm"
     },
@@ -506,7 +1105,7 @@
       about_eyebrow: "QUIÉN VA A TU CASA",
       about_chip_1: "Formada en Fisiomasoterapia, 2024",
       about_chip_2: "Atendiendo en Río desde hace casi 3 años",
-      about_chip_3: "Atiendo en portugués, inglés y español",
+      about_chip_3: "Atiendo en portugués, inglés, español e italiano",
       about_p1: "La masoterapia entró en mi vida por el deseo de trabajar directamente con las personas. Creo en el poder de la prevención y lo promuevo a través de una de las medicinas más antiguas y relevantes del mundo, la medicina china.",
       about_p2: "Poder proporcionar salud y bienestar de forma humana y natural me produce una gran satisfacción personal. Me especialicé para ofrecer alivio de dolores musculares, reducción del estrés y mejora de la calidad de vida.",
       about_p3: "Creo en el tacto como herramienta de cuidado y en la atención como un espacio seguro de acogida.",
@@ -518,13 +1117,13 @@
       svc1_desc: "Trabajo profundo en un área de tensión, seguido de relajación en todo el cuerpo.",
       svc2_for: "HINCHAZÓN, PIERNAS PESADAS, POSTOPERATORIO",
       svc2_name: "Drenaje Linfático",
-      svc2_desc: "Movimientos lentos y suaves que ayudan al cuerpo a eliminar el líquido retenido y las toxinas.",
+      svc2_desc: "Movimientos lentos y suaves que ayudan al cuerpo a eliminar el líquido retido y toxinas.",
       svc3_for: "CONTORNO Y FIRMEZA DE LA PIEL",
       svc3_name: "Masaje Modelador",
       svc3_desc: "Presión firme y rítmica para activar el metabolismo. Funciona mejor en secuencia de sesiones.",
       svc4_for: "CABEZA LLENA, MAL SUEÑO, ESTRÉS",
       svc4_name: "Masaje Relajante (Sueco)",
-      svc4_desc: "Deslizamientos largos y suaves. Es la sesión clásica para quienes necesitan bajar el ritmo y desconectar.",
+      svc4_desc: "Deslizamientos largos y suaves. Es la sesión clásica para quien necesita bajar el ritmo y desconectar.",
       svc5_for: "TENSIÓN PROFUNDA Y DOLORES CRÓNICOS",
       svc5_name: "Masaje Deep Tissue",
       svc5_desc: "Enfoque en las capas más profundas de los músculos y fascias para deshacer nudos persistentes.",
@@ -533,28 +1132,38 @@
       svc6_desc: "El calor de las piedras volcánicas derrite la tensión muscular más rápido, induciendo una relajación profunda.",
       svc7_for: "DOLORES LOCALIZADOS Y CONTRACTURAS",
       svc7_name: "Masaje Terapéutico + Ventosas",
-      svc7_desc: "La succión de las ventosas aumenta la circulación local, acelerando el alivio de áreas muy rígidas.",
+      svc7_desc: "La succión de las ventosas aumenta la circulación local, acelerando el alivio de áreas muy tensas.",
       svc8_for: "RETENCIÓN DE LÍQUIDOS Y GRASA LOCALIZADA",
-      svc8_name: "Masaje Drenomodelador",
-      svc8_desc: "Une la desinflamación del drenaje linfático con el modelado vigoroso para redefinir contornos.",
-      svc9_for: "FLACIDEZ, CELULITIS Y CANSANCIO",
-      svc9_name: "Bambuterapia",
-      svc9_desc: "Uso de bambúes de diferentes tamaños que actúan como un rodillo sobre la tensión y en el modelado corporal.",
+      svc8_name: "Drenomodelador",
+      svc8_desc: "Une la deshinchar del drenaje linfático con la modelación vigorosa para redefinir contornos.",
       svc10_for: "PRE Y POST-ENTRENAMIENTO, FATIGA MUSCULAR",
       svc10_name: "Masaje Deportivo",
-      svc10_desc: "Fuerte y rápido, enfocado en preparar la musculatura para el deporte o acelerar la recuperación tras el esfuerzo.",
+      svc10_desc: "Fuerte y rápido, enfocado en preparar la musculatura para el deporte o acelerar la recuperación.",
       reviews_eyebrow: "LO QUE DICEN",
-      reviews_title: "Once personas dejaron entrar a una desconocida a su casa. Ninguna nota por debajo de cinco.",
+      reviews_title: "Once personas dejaron entrar a un desconocido en casa. Ninguna nota por debajo de cinco.",
       reviews_count: "11 reseñas en Google",
-      quote_1: "“Tenía algunos dolores por el gimnasio y salí del masaje como nuevo, olvidé mis dolores y súper relajado. Vale mucho la pena, Ligia tiene una técnica increíble.”",
-      quote_2: "“Ligia aplica la cantidad perfecta de presión comprobando periódicamente conmigo mi nivel de comodidad. Me ha aliviado el dolor y aumentado la amplitud de movimiento de mi hombro.”",
-      quote_3: "“Extremamente atenta y profesional, ya la he recomendado a todos mis amigos.”",
+      quote_1: "“Estava com alguns dolores por el gimnasio y salí del masaje como nuevo, olvidé mis dolores y súper relajado. Vale mucho la pena, Ligia tiene una técnica increíble.”",
+      quote_2: "“Ligia applies the perfect amount of pressure by periodically checking with me on my comfort level. She has relieved the pain and increased the range of motion in my shoulder.”",
+      quote_3: "“Extremadamente atenta y profesional, ya la he recomendado a todos mis amigos.”",
       btn_more_reviews: "Ver más reseñas en Google",
       final_title: "Dime el barrio y el día. Yo llevo el resto.",
-      final_lede: "Respuesta en el mismo día. Sin registro y sin aplicación.",
-      final_trust_1: "Directo conmigo, sin intermediarios",
-      final_trust_2: "Copacabana, Barra, Tijuca, Recreio, Centro y otras localidades · de 9h a 20h",
-      footer_contact: "Habla conmigo",
+      final_lede: "Atención a domicilio práctica, personalizada y sin complicaciones.",
+      final_card1_title: "Barrios Atendidos",
+      final_card1_desc: "Atención presencial directamente en tu residencia:",
+      final_card2_title: "Horario Flexible",
+      final_card2_desc: "De lunes a domingo, de <strong>9h a 20h</strong>. Respuesta rápida el mismo día.",
+      final_card3_title: "Comodidad Total",
+      final_card3_desc: "Llevo camilla profesional, aceites y toallas esterilizadas. Sin app ni registro.",
+      footer_desc: "Masoterapia especializada para tu bienestar, equilibrio y calidad de vida en Río de Janeiro.",
+      footer_langs: "Idiomas: <strong>Portugués | Italiano | Inglés | Español | Francés</strong>",
+      footer_nav_title: "Navegación",
+      footer_nav_home: "Inicio",
+      footer_nav_about: "Sobre Mí",
+      footer_nav_services: "Servicios",
+      footer_nav_reviews: "Reseñas",
+      footer_hours_title: "Horario de Atención",
+      footer_hours_desc: "Lunes a Domingo<br><strong>De 9h a 20h</strong>",
+      footer_areas_desc: "Copacabana, Barra, Tijuca, Recreio, Centro y regiones.",
       footer_call: "Llamar",
       footer_note: "Ligia Possu · Masoterapeuta a domicilio · Río de Janeiro · Atiendo de 9h a 20h"
     },
@@ -563,167 +1172,169 @@
       nav_schedule: "Réserver",
       hero_eyebrow: "MASSOTHÉRAPIE À DOMICILE · RIO DE JANEIRO",
       hero_title: "Après le massage, vous n'avez besoin d'aller nulle part.",
-      hero_lede: "J'apporte la table, les huiles et les serviettes chez vous. Vous choisissez l'heure, vous vous allongez et vous restez.",
+      hero_lede: "J'apporte la table, les huiles et les serviettes chez vous. Vous choisissez l'heure, vous vous allongez et vous profitez.",
       hero_trust_reviews: "5,0 · 11 avis sur Google",
-      hero_trust_areas: "Copacabana, Barra, Tijuca, Recreio, Centro et autres localités · Disponible de 9h à 20h",
+      hero_trust_areas: "Copacabana, Barra, Tijuca, Recreio, Centro et autres localités · De 9h à 20h",
       btn_whatsapp: "Réserver sur WhatsApp",
-      hero_questions: "Encore des doutes ? Demandez avant de réserver →",
+      hero_questions: "Encore des questions ? Demandez avant de réserver →",
       about_eyebrow: "QUI VIENT CHEZ VOUS",
-      about_chip_1: "Diplômée en Physiomassothérapie, 2024",
-      about_chip_2: "Travaillant à Rio depuis près de 3 ans",
-      about_chip_3: "Services en portugais, anglais et espagnol",
-      about_p1: "La massothérapie est entrée dans ma vie par le désir de travailler directement avec les gens. Je crois au pouvoir de la prévention et je la promeus à travers l'une des médecines les plus anciennes et pertinentes au monde, la médecine chinoise.",
-      about_p2: "Pouvoir offrir santé et bien-être de manière humaine et naturelle m'apporte une grande satisfaction personnelle. Je me suis spécialisée pour offrir un soulagement des douleurs musculaires, réduire le stress et améliorer la qualité de vie.",
-      about_p3: "Je crois au toucher comme outil de soin et au service comme un espace sûr et accueillant.",
-      about_p4: "J'apporte des <strong>draps et serviettes stérilisés</strong>, à usage unique. Si vous avez déjà une table, dites-le moi lors de la réservation.",
+      about_chip_1: "Diplômée en physiomassothérapie, 2024",
+      about_chip_2: "Exerce à Rio depuis près de 3 ans",
+      about_chip_3: "Services en portugais, anglais, espagnol et italien",
+      about_p1: "La massothérapie est entrée dans ma vie par envie de travailler directement avec les personnes. Je crois au pouvoir de la prévention à travers l'une des médecines les plus anciennes, la médecine chinoise.",
+      about_p2: "Offrir santé et bien-être de manière humaine et naturelle est une grande satisfaction. Je me suis spécialisée dans le soulagement des douleurs musculaires et la réduction du stress.",
+      about_p3: "Je crois au toucher comme outil de soin et à l'accueil comme espace sécurisant.",
+      about_p4: "J'apporte <strong>des draps et serviettes stérilisés</strong> à usage unique. Si vous avez une table, dites-le-moi lors de la réservation.",
       svc_eyebrow: "CE QUE JE FAIS",
-      svc_title: "Choisissez en fonction de ce qui vous fait mal, pas du nom technique.",
+      svc_title: "Choisissez selon votre douleur, pas selon le nom technique.",
       svc1_for: "DOS ET COU BLOQUÉS",
-      svc1_name: "Libération Myofasciale + Relaxant",
-      svc1_desc: "Travail en profondeur sur une zone de tension spécifique, suivi d'une relaxation de tout le corps.",
-      svc2_for: "GONFLEMENTS, JAMBES LOURDES, POST-OPÉRATOIRE",
-      svc2_name: "Drainage Lymphatique",
-      svc2_desc: "Mouvements lents et doux qui aident le corps à éliminer les liquides retenus et les toxines.",
+      svc1_name: "Libération myofasciale + Relaxant",
+      svc1_desc: "Travail profond sur une zone de tension, suivi d'une relaxation complète du corps.",
+      svc2_for: "GONFLEMENT, JAMBES LOURDES, POST-OP",
+      svc2_name: "Drainage lymphatique",
+      svc2_desc: "Mouvements lents et doux pour aider le corps à éliminer les liquides et toxines.",
       svc3_for: "CONTOUR ET FERMETÉ DE LA PEAU",
-      svc3_name: "Massage Modelant",
-      svc3_desc: "Pression ferme et rythmée pour activer le métabolisme. Fonctionne mieux en série de séances.",
+      svc3_name: "Massage modelant",
+      svc3_desc: "Pression ferme et rythmée pour activer le métabolisme.",
       svc4_for: "TÊTE PLEINE, MAUVAIS SOMMEIL, STRESS",
-      svc4_name: "Massage Relaxant (Suédois)",
-      svc4_desc: "Glissements longs et fluides. C'est la séance classique pour ceux qui ont besoin de ralentir le rythme et de déconnecter.",
+      svc4_name: "Massage relaxant (Suédois)",
+      svc4_desc: "Longs glissements fluides pour décompresser et s'évader.",
       svc5_for: "TENSION PROFONDE ET DOULEURS CHRONIQUES",
       svc5_name: "Massage Deep Tissue",
-      svc5_desc: "Se concentre sur les couches plus profondes des muscles et fascias pour défaire les nœuds persistants.",
-      svc6_for: "RELAXATION EXTRÊME ET ANXIÉTÉ",
-      svc6_name: "Massage aux Pierres Chaudes",
-      svc6_desc: "La chaleur des pierres volcaniques fait fondre la tension musculaire plus rapidement, induisant une relaxation profonde.",
+      svc5_desc: "Cible les couches musculaires profondes pour dénouer les tensions persistantes.",
+      svc6_for: "RELAXATION EXTREME ET ANXIÉTÉ",
+      svc6_name: "Massage aux pierres chaudes",
+      svc6_desc: "La chaleur des pierres volcaniques fond les tensions musculaires plus rapidement.",
       svc7_for: "DOULEURS LOCALISÉES ET CONTRACTURES",
-      svc7_name: "Massage Thérapeutique + Ventouses",
-      svc7_desc: "La succion des ventouses augmente la circulation locale, accélérant le soulagement dans les zones très raides.",
+      svc7_name: "Massage thérapeutique + Ventouses",
+      svc7_desc: "L'aspiration des ventouses augmente la circulation sanguine locale pour un soulagement rapide.",
       svc8_for: "RÉTENTION D'EAU ET GRAISSE LOCALISÉE",
-      svc8_name: "Massage Dreno-modelant",
-      svc8_desc: "Combine le dégonflement du drainage lymphatique avec le modelage vigoureux pour redéfinir les contours.",
-      svc9_for: "RELACHEMENT DE LA PEAU, CELLULITE ET FATIGUE",
-      svc9_name: "Bambouthérapie",
-      svc9_desc: "Utilisation de bambous de différentes tailles agissant comme un rouleau sur la tension et le remodelage du corps.",
-      svc10_for: "PRÉ ET POST-ENTRAÎNEMENT, FATIGUE MUSCULAIRE",
-      svc10_name: "Massage Sportif",
-      svc10_desc: "Fort et rapide, axé sur la préparation des muscles pour le sport ou l'accélération de la récupération après l'effort.",
+      svc8_name: "Massage drainant-modelant",
+      svc8_desc: "Associe le drainage et le modelage vigoureux pour redéfinir la silhouette.",
+      svc10_for: "PRÉ ET POST-ENTRAÎNEMENT, FATIGUE",
+      svc10_name: "Massage sportif",
+      svc10_desc: "Rapide et tonique pour préparer ou récupérer après l'effort.",
       reviews_eyebrow: "CE QU'ILS DISENT",
-      reviews_title: "Onze personnes ont laissé une inconnue entrer chez elles. Aucune note en dessous de cinq.",
+      reviews_title: "Onze personnes ont laissé entrer un inconnu chez elles. Aucune note inférieure à cinq.",
       reviews_count: "11 avis sur Google",
-      quote_1: "“J'avais des douleurs à cause de la salle de sport et je suis ressorti du massage comme neuf, j'ai oublié mes douleurs et j'étais super détendu. Ça vaut vraiment le coup, Ligia a une technique incroyable.”",
-      quote_2: "“Ligia applique la pression parfaite en vérifiant périodiquement avec moi mon niveau de confort. Elle a soulagé ma douleur et augmenté l'amplitude de mouvement de mon épaule.”",
-      quote_3: "“Extrêmement attentive et professionnelle, je l'ai déjà recommandée à tous mes amis.”",
+      quote_1: "“J'avais des douleurs de sport et je suis sorti du massage comme neuf, totalement détendu.”",
+      quote_2: "“Ligia applies the perfect amount of pressure by periodically checking with me on my comfort level.”",
+      quote_3: "“Extrêmement attentionnée et professionnelle, je l'ai déjà recommandée à tous mes amis.”",
       btn_more_reviews: "Voir plus d'avis sur Google",
       final_title: "Dites-moi le quartier et le jour. J'apporte le reste.",
-      final_lede: "Réponse le jour même. Pas d'inscription et pas d'application.",
-      final_trust_1: "Directement avec moi, sans intermédiaire",
-      final_trust_2: "Copacabana, Barra, Tijuca, Recreio, Centro et autres localités · de 9h à 20h",
-      footer_contact: "Me contacter",
+      final_lede: "Service à domicile pratique, personnalisé et sans tracas.",
+      final_card1_title: "Quartiers Desservis",
+      final_card1_desc: "Intervention directe à votre domicile :",
+      final_card2_title: "Horaires Flexibles",
+      final_card2_desc: "Du lundi au dimanche, de <strong>9h à 20h</strong>. Réponse rapide le jour mesmo.",
+      final_card3_title: "Commodité Totale",
+      final_card3_desc: "J'apporte table, huiles et serviettes stérilisées. Sans application ni inscription.",
+      footer_desc: "Massothérapie spécialisée pour votre bien-être, votre équilibre et votre qualité de vie à Rio de Janeiro.",
+      footer_langs: "Langues : <strong>Portugais | Italien | Anglais | Espagnol | Français</strong>",
+      footer_nav_title: "Navigation",
+      footer_nav_home: "Accueil",
+      footer_nav_about: "À propos",
+      footer_nav_services: "Services",
+      footer_nav_reviews: "Avis",
+      footer_hours_title: "Horaires",
+      footer_hours_desc: "Du lundi au dimanche<br><strong>De 9h à 20h</strong>",
+      footer_areas_desc: "Copacabana, Barra, Tijuca, Recreio, Centro et environs.",
       footer_call: "Appeler",
-      footer_note: "Ligia Possu · Massothérapeute à domicile · Rio de Janeiro · Disponible de 9h à 20h"
+      footer_note: "Ligia Possu · Massothérapeute à domicile · Rio de Janeiro · De 9h à 20h"
     },
     it: {
       brand_subtitle: "Massoterapia · di Ligia Possu",
       nav_schedule: "Prenota",
       hero_eyebrow: "MASSOTERAPIA A DOMICILIO · RIO DE JANEIRO",
       hero_title: "Dopo il massaggio, non devi andare da nessuna parte.",
-      hero_lede: "Porto il lettino, gli oli e gli asciugamani a casa tua. Scegli l'orario, ti sdrai e resti lì.",
+      hero_lede: "Porto il lettino, gli oli e gli asciugamani a casa tua. Scegli l'orario, ti sdrai e ti rilassi.",
       hero_trust_reviews: "5,0 · 11 recensioni su Google",
-      hero_trust_areas: "Copacabana, Barra, Tijuca, Recreio, Centro e altre località · Disponibile dalle 9:00 alle 20:00",
+      hero_trust_areas: "Copacabana, Barra, Tijuca, Recreio, Centro e altre località · Dalle 9:00 alle 20:00",
       btn_whatsapp: "Prenota su WhatsApp",
-      hero_questions: "Hai ancora dei dubbi? Chiedi prima di prenotare →",
+      hero_questions: "Hai ancora dubbi? Chiedi prima di prenotare →",
       about_eyebrow: "CHI VIENE DA TE",
       about_chip_1: "Laureata in Fisiomassoterapia, 2024",
-      about_chip_2: "Lavoro a Rio da quasi 3 anni",
-      about_chip_3: "Servizi in portoghese, inglese e spagnolo",
-      about_p1: "La massoterapia è entrata nella mia vita grazie al desiderio di lavorare direttamente con le persone. Credo nel potere della prevenzione e lo promuovo attraverso una delle medicine più antiche e rilevanti al mondo, la medicina cinese.",
-      about_p2: "Poter offrire salute e benessere in modo umano e naturale mi dà grande soddisfazione personale. Mi sono specializzata per offrire sollievo dai dolori muscolari, riduzione dello stress e miglioramento della qualità di vita.",
-      about_p3: "Credo nel tocco come strumento di cura e nel servizio come spazio sicuro e accogliente.",
-      about_p4: "Porto <strong>lenzuola e asciugamani sterilizzati</strong>, usati una sola volta. Se hai già un lettino, dimmelo quando prenoti.",
+      about_chip_2: "A Rio da quasi 3 anni",
+      about_chip_3: "Servizi in portoghese, inglese, spagnolo e italiano",
+      about_p1: "La massoterapia è entrata nella mia vita per il desiderio di lavorare a diretto contatto con le persone. Credo nella prevenzione attraverso una delle medicine più antiche, la medicina cinese.",
+      about_p2: "Poter offrire salute e benessere in modo umano e naturale mi dà grande soddisfazione. Mi sono specializzata nel sollievo dal dolore muscolare e nella riduzione dello stress.",
+      about_p3: "Credo nel contatto come strumento di cura e nell'accoglienza come spazio sicuro.",
+      about_p4: "Porto <strong>lenzuola e asciugamani sterilizzati</strong> monouso. Se hai già un lettino, comunicalo al momento della prenotazione.",
       svc_eyebrow: "COSA FACCIO",
       svc_title: "Scegli in base a ciò che ti fa male, non al nome tecnico.",
       svc1_for: "SCHIENA E COLLO BLOCCATI",
-      svc1_name: "Rilascio Miofasciale + Rilassante",
-      svc1_desc: "Lavoro profondo su un'area specifica di tensione, seguito da rilassamento per tutto il corpo.",
-      svc2_for: "GONFIORE, GAMBE PESANTI, POST-OPERATORIO",
-      svc2_name: "Drenaggio Linfatico",
-      svc2_desc: "Movimenti lenti e dolci che aiutano il corpo a eliminare i liquidi trattenuti e le tossine.",
-      svc3_for: "CONTORNO E COMPATTEZZA DELLA PELLE",
-      svc3_name: "Massaggio Modellante",
-      svc3_desc: "Pressione ferma e ritmata per attivare il metabolismo. Funziona meglio in sequenze di sedute.",
+      svc1_name: "Rilascio miofasciale + Rilassante",
+      svc1_desc: "Lavoro profondo su un'area di tensione, seguito da rilassamento totale.",
+      svc2_for: "GONFIORE, GAMBE PESANTI, POST-OP",
+      svc2_name: "Linfodrenaggio",
+      svc2_desc: "Movimenti lenti e delicati per aiutare il corpo a eliminare i liquidi in eccesso.",
+      svc3_for: "CONTORNO E TONICITÀ DELLA PELLE",
+      svc3_name: "Massaggio rimodellante",
+      svc3_desc: "Pressione soda e ritmica per attivare il metabolismo.",
       svc4_for: "TESTA PIENA, CATTIVO SONNO, STRESS",
-      svc4_name: "Massaggio Rilassante (Svedese)",
-      svc4_desc: "Scivolamenti lunghi e dolci. È la sessione classica per chi ha bisogno di rallentare e staccare la spina.",
+      svc4_name: "Massaggio rilassante (Svedese)",
+      svc4_desc: "Lunghi movimenti fluidi per rallentare il ritmo e staccare la spina.",
       svc5_for: "TENSIONE PROFONDA E DOLORI CRONICI",
       svc5_name: "Massaggio Deep Tissue",
-      svc5_desc: "Si concentra sugli strati più profondi di muscoli e fasce per sciogliere i nodi persistenti.",
+      svc5_desc: "Mirato agli strati muscolari più profondi per sciogliere i nodi persistenti.",
       svc6_for: "RILASSAMENTO ESTREMO E ANSIA",
-      svc6_name: "Massaggio con Pietre Calde",
-      svc6_desc: "Il calore delle pietre vulcaniche scioglie la tensione muscolare più velocemente, inducendo un profondo rilassamento.",
+      svc6_name: "Massaggio con pietre calde",
+      svc6_desc: "Il calore delle pietre vulcaniche scioglie rapidamente la tensione muscolare.",
       svc7_for: "DOLORI LOCALIZZATI E CONTRATTURE",
-      svc7_name: "Massaggio Terapeutico + Coppettazione",
-      svc7_desc: "L'aspirazione delle coppette aumenta la circolazione locale, accelerando il sollievo in aree molto rigide.",
+      svc7_name: "Massaggio terapeutico + Ventose",
+      svc7_desc: "L'aspirazione delle coppette aumenta la circolazione locale per un sollievo rapido.",
       svc8_for: "RITENZIONE IDRICA E GRASSO LOCALIZZATO",
-      svc8_name: "Massaggio Drenomodellante",
-      svc8_desc: "Unisce il drenaggio linfatico al modellamento vigoroso per ridefinire i contorni.",
-      svc9_for: "RILASSAMENTO DELLA PELLE, CELLULITE E FATICA",
-      svc9_name: "Bambuterapia",
-      svc9_desc: "Uso di bambù di diverse dimensioni che agiscono come rulli sulla tensione e nel modellamento corporeo.",
-      svc10_for: "PRE E POST-ALLENAMENTO, AFFATICAMENTO MUSCOLARE",
-      svc10_name: "Massaggio Sportivo",
-      svc10_desc: "Forte e rapido, mirato a preparare la muscolatura allo sport o ad accelerare il recupero dopo lo sforzo.",
+      svc8_name: "Massaggio rimodellante e drenante",
+      svc8_desc: "Unisce il drenaggio linfatico a un modellamento vigoroso.",
+      svc10_for: "PRE E POST-ALLENAMENTO, AFFATICAMENTO",
+      svc10_name: "Massaggio sportivo",
+      svc10_desc: "Veloce e mirato a preparare o recuperare dopo lo sforzo fisico.",
       reviews_eyebrow: "COSA DICONO",
-      reviews_title: "Undici persone hanno fatto entrare una sconosciuta in casa. Nessun voto inferiore a cinque.",
+      reviews_title: "Undici persone hanno fatto entrare uno sconosciuto in casa. Nessuna valutazione inferiore a cinque.",
       reviews_count: "11 recensioni su Google",
-      quote_1: "“Avevo dei dolori per via della palestra e sono uscito dal massaggio come nuovo, mi sono dimenticato dei dolori e mi sono super rilassato. Ne vale la pena, Ligia ha una tecnica incredibile.”",
-      quote_2: "“Ligia applica la giusta pressione verificando periodicamente il mio livello di comfort. Ha alleviato il mio dolore e aumentato l'ampiezza di movimento della mia spalla.”",
-      quote_3: "“Estremamente attenta e professionale, l'ho già raccomandata a tutti i miei amici.”",
-      btn_more_reviews: "Vedi altre recensioni su Google",
-      final_title: "Dimmi il quartiere e il giorno. Io porto il resto.",
-      final_lede: "Risposta in giornata. Nessuna registrazione e nessuna app.",
-      final_trust_1: "Direttamente con me, nessun intermediario",
-      final_trust_2: "Copacabana, Barra, Tijuca, Recreio, Centro e altre località · Dalle 9:00 alle 20:00",
-      footer_contact: "Contattami",
+      quote_1: "“Avevo dolori dalla palestra e sono uscito dal massaggio come nuovo, super rilassato.”",
+      quote_2: "“Ligia applies the perfect amount of pressure by periodically checking with me on my comfort level.”",
+      quote_3: "“Extremamente attenta e professionale, l'ho già consigliata a tutti i miei amici.”",
+      btn_more_reviews: "Visualizza altre recensioni su Google",
+      final_title: "Dimmi il quartiere e il giorno. Porto io il resto.",
+      final_lede: "Servizio a domicilio pratico, personalizzato e senza complicazioni.",
+      final_card1_title: "Quartieri Serviti",
+      final_card1_desc: "Servizio direttamente a casa tua:",
+      final_card2_title: "Orari Flessibili",
+      final_card2_desc: "Da lunedì a domenica, dalle <strong>9:00 alle 20:00</strong>. Risposta rapida in giornata.",
+      final_card3_title: "Comodità Totale",
+      final_card3_desc: "Porto lettino professionale, oli e asciugamani sterilizzati. Senza app o registrazione.",
+      footer_desc: "Massoterapia specializzata per il tuo benessere, equilibrio e qualità della vita a Rio de Janeiro.",
+      footer_langs: "Lingue: <strong>Portoghese | Italiano | Inglese | Spagnolo | Francese</strong>",
+      footer_nav_title: "Navigazione",
+      footer_nav_home: "Home",
+      footer_nav_about: "Chi Sono",
+      footer_nav_services: "Servizi",
+      footer_nav_reviews: "Recensioni",
+      footer_hours_title: "Orari di Apertura",
+      footer_hours_desc: "Da lunedì a domenica<br><strong>Dalle 9:00 alle 20:00</strong>",
+      footer_areas_desc: "Copacabana, Barra, Tijuca, Recreio, Centro e dintorni.",
       footer_call: "Chiama",
-      footer_note: "Ligia Possu · Massaggiatrice a Domicilio · Rio de Janeiro · Disponibile dalle 9:00 alle 20:00"
+      footer_note: "Ligia Possu · Massoterapeuta a domicilio · Rio de Janeiro · Dalle 9:00 alle 20:00"
     }
   };
 
-  // Logic to handle language switching
-  function switchLanguage(lang) {
-    // 1. Update active button state
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      if (btn.dataset.lang === lang) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
-    });
-
-    // 2. Update document language attribute
-    document.documentElement.lang = lang === 'en' ? 'en-US' : (lang === 'es' ? 'es-ES' : (lang === 'fr' ? 'fr-FR' : (lang === 'it' ? 'it-IT' : 'pt-BR')));
-
-    // 3. Find translation dictionary
-    const dict = translations[lang];
-    if (!dict) return;
-
-    // 4. Update all translatable elements
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (dict[key]) {
-        el.innerHTML = dict[key];
-      }
-    });
-  }
-
-  // Attach event listeners to all language buttons
   document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      switchLanguage(e.target.dataset.lang);
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const lang = btn.getAttribute('data-lang');
+      const dict = translations[lang];
+      if (!dict) return;
+      document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.innerHTML = dict[key];
+        }
+      });
     });
   });
-
 </script>
 </body>
 </html>
